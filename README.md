@@ -11,15 +11,17 @@ before they reach the boundary.
 
 ### Why study using flashcards?
 
-Flashcards are a form of learning that engages our *active recall*. It improves
-our memory retention and helps us build connections with the material.
-It is also useful for visual learners like myself or students who have a short 
+Flashcards are a form of learning that engages our **active recall**. It improves
+our *memory retention* and helps us *build connections* with the material.
+It is also useful for *visual learners* like myself or students who have a short 
 retention span and have a hard time reading long texts. By implementing flashcards 
 as a rewarding game, it will also build the competitive spirit within the user 
 and make learning more fun. 
 
-User Story:
-- item 1
-- item 2
-- item 3
+### User Story:
+- As a user I want to be able to add more cards into my deck of flashcards.
+- As a user I want to be able to see the cards in my current deck of flashcards.
+- As a user I want to be able to delete a card from my deck of flashcards. 
+- As a user I want to be able to edit the details of a card in my deck of flashcards.
+- As a user I want to be able to add a new deck of flashcards into my collection. 
  
