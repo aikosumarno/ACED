@@ -12,12 +12,12 @@ public class Deck {
     // REQUIRES: deck does not already contain card with same question and answer
     // MODIFIES: this
     // EFFECTS: adds given card to the end of the deck
-    public void addCard(Card card) {
-
+    public Card addCard(Card card) {
+        return null; //stub
     }
 
     // EFFECTS: returns the deck of cards
-    public List<Card> viewCards() {
+    public List<Card> viewDeck() {
         return null; //stub
     }
 
@@ -28,24 +28,24 @@ public class Deck {
 
 
     // REQUIRES: currentDeck.size() != 0
-    // EFFECTS: returns the card in the list with the given question,
-    //          null if not found
-    public Card findCard(String question) {
-        return null; //stub
+    // EFFECTS: returns the card's position in the list,
+    //          -1 if not found
+    public int findCardNumber(Card card) {
+        return 0; //stub
     }
 
     // REQUIRES: currentDeck.findCard(currentQuestion) != null
     // MODIFIES: this, card with current questions
     // EFFECTS: changes the card's question and answer  with the new question
     //          and answer, respectively.
-    public void editCard(String currentQuestion, String newQuestion, String newAnswer) {
-
+    public Card editCard(Card card, String newQuestion, String newAnswer) {
+        return null; //stub
     }
 
     // REQUIRES: currentDeck.findCard(question) != null
     // MODIFIES: this
     // EFFECTS: deletes and returns the card with the given question
-    public Card deleteCard(String question) {
+    public Card deleteCard(Card card) {
         return null; //stub
     }
 }
