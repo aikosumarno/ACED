@@ -1,39 +1,46 @@
 package model;
 
 public class Card {
+    private String question;
+    private String answer;
+    private boolean status;
 
     // EFFECTS: Creates an instance of the class with question set to cardQuestion;
     //          answer set to cardAnswer;
     //          and status set to false indicating that it has not been mastered
     public Card(String cardQuestion, String cardAnswer) {
-
+        this.question = cardQuestion;
+        this.answer = cardAnswer;
+        this.status = false;
     }
 
     // EFFECTS: returns the question on the card
     public String getQuestion() {
-        return null; //stub
+        return question; //stub
     }
 
     // EFFECTS: returns the answer on the card
     public String getAnswer() {
-        return null; //stub
+        return answer; //stub
     }
 
     // EFFECTS: returns the status of the card
     public boolean getStatus() {
-        return false; //stub
+        return status; //stub
     }
 
     // MODIFIES: this
     // EFFECTS: changes question to the new question
     public String editQuestion(String newQuestion) {
-        return null; //stub
+        this.question = newQuestion;
+        return question; //stub
     }
 
     // MODIFIES: this
     // EFFECTS: changes answer to the new answer
     public String editAnswer(String newAnswer) {
-        return null; //stub
+        this.answer = newAnswer;
+        return answer; //stub
     }
 
     // MODIFIES: this
@@ -41,6 +48,7 @@ public class Card {
     //          false indicating that it has not been mastered
     //          and true indicating that it has been mastered
     public boolean changeStatus(boolean newStatus) {
-        return false; //stub
+        this.status = newStatus;
+        return status; //stub
     }
 }
