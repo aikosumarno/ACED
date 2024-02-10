@@ -1,23 +1,26 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Collection {
+    private List<Deck> myCollection;
 
     // EFFECTS: creates an instance of the class with an empty collection
     public Collection() {
-
+        myCollection = new ArrayList<Deck>();
     }
 
     // EFFECTS: returns list of deck in collection
     public List<Deck> getCollection() {
-        return null;
+        return myCollection;
     }
 
     // REQUIRES: collection does not already contain a deck with the same name
     // MODIFIES: this
     // EFFECTS: adds new deck to the end of the collection
-    public void addNewDeck(Deck name) {
-
+    public Deck addNewDeck(Deck name) {
+        myCollection.add(name);
+        return name;
     }
 }

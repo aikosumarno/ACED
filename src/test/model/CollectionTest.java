@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CollectionTest {
     private Deck subjects;
@@ -19,7 +20,7 @@ public class CollectionTest {
 
     @Test
     void testCollection() {
-        assertEquals(null, myCollection.getCollection());
+        assertTrue( myCollection.getCollection().isEmpty());
     }
 
     @Test
