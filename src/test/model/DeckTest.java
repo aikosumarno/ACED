@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeckTest {
     private Card happy;
@@ -31,8 +32,8 @@ public class DeckTest {
 
     @Test
     void testDeck() {
-        assertEquals(null, emotions.viewDeck());
-        assertEquals(null, subjects.viewDeck());
+        assertTrue(emotions.viewDeck().isEmpty());
+        assertTrue(subjects.viewDeck().isEmpty());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class DeckTest {
         assertEquals(1, emotions.getSize());
         assertEquals(happy, emotions.addCard(happy));
         assertEquals(2, emotions.getSize());
-        assertEquals(sad, emotions.addCard(happy));
+        assertEquals(sad, emotions.addCard(sad));
         assertEquals(3, emotions.getSize());
         assertEquals(maths, subjects.addCard(maths));
         assertEquals(1, subjects.getSize());
@@ -49,7 +50,7 @@ public class DeckTest {
 
     @Test
     void testViewDeck() {
-        assertEquals(null, emotions.viewDeck());
+        assertTrue(emotions.viewDeck().isEmpty());
         emotions.addCard(angry);
         assertEquals(angry, emotions.viewDeck().get(0));
         assertEquals(1, emotions.getSize());
@@ -57,9 +58,9 @@ public class DeckTest {
         assertEquals(curious, emotions.viewDeck().get(1));
         assertEquals(2, emotions.getSize());
         subjects.addCard(science);
-        assertEquals(2, emotions.viewDeck());
+        assertEquals(2, emotions.getSize());
         assertEquals(science, subjects.viewDeck().get(0));
-        assertEquals(1, subjects.viewDeck());
+        assertEquals(1, subjects.getSize());
         emotions.addCard(happy);
         assertEquals(3, emotions.getSize());
         assertEquals(happy, emotions.viewDeck().get(2));
@@ -107,7 +108,7 @@ public class DeckTest {
         assertEquals(1, subjects.getSize());
         assertEquals(-1, subjects.findCardNumber(maths));
         assertEquals(science, subjects.viewDeck().get(0));
-        assertEquals(maths, subjects.deleteCard(science));
+        assertEquals(science, subjects.deleteCard(science));
         assertEquals(0, subjects.getSize());
         assertEquals(-1, subjects.findCardNumber(science));
     }
