@@ -31,6 +31,11 @@ public class Deck {
         return currentDeck.size();
     }
 
+    // EFFECTS: returns the name of the deck
+    public String getName() {
+        return name;
+    }
+
 
     // REQUIRES: currentDeck.size() != 0
     // EFFECTS: returns the card's position in the list,
