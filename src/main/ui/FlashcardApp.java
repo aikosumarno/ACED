@@ -67,6 +67,7 @@ public class FlashcardApp {
     // EFFECTS: displays menu of options in deck class to user
     private void displayDeckMenu() {
         System.out.println("\nSelect from:");
+        System.out.println("\ts -> study card");
         System.out.println("\ta -> add card");
         System.out.println("\te -> edit card");
         System.out.println("\td -> delete card");
@@ -106,17 +107,16 @@ public class FlashcardApp {
     // EFFECTS: prints out all of the cards in the chosen deck
     private void viewDeck(Deck deck) {
         int num = 1;
-        String status;
 
         System.out.println("\nCards in " + deck.getName() + ":");
         for (Card current: deck.viewDeck()) {
             System.out.println(num + ". " + current.getQuestion() + ": " + current.getAnswer());
             if (!current.getStatus()) {
-                status = "not yet learned";
+                System.out.println("\t status: studied " + current.getStudyCounter() + " time");
             } else {
-                status = "mastered";
+                System.out.println("\t status: mastered");
             }
-            System.out.println("\t status: " + status);
+
             num++;
         }
 
@@ -132,18 +132,46 @@ public class FlashcardApp {
             displayDeckMenu();
             choice = input.next();
             choice = choice.toLowerCase();
-            if (choice.equals("a") || choice.equals("e") || choice.equals("d") || choice.equals("r")) {
+            if (choice.equals("a") || choice.equals("e") || choice.equals("d")
+                    || choice.equals("r") || choice.equals("s")) {
                 validChoice = true;
             }
         }
 
-        if (choice.equals("a")) {
+        if (choice.equals("s")) {
+            studyCard(deck);
+        } else if (choice.equals("a")) {
             addCard(deck);
         } else if (choice.equals("e")) {
             editCard(deck);
         } else if (choice.equals("d")) {
             deleteCard(deck);
         }
+    }
+
+    // REQUIRES: deck.getSize() >= 1
+    // MODIFIES: this
+    // EFFECTS: print question of chosen card and updates card study counter and status if answer is entered correctly
+    private void studyCard(Deck deck) {
+        int num = 0;
+        String answer;
+
+        while (num <= 0 || num > deck.getSize()) {
+            System.out.println("\nEnter card number you would like to study: ");
+            num = input.nextInt();
+        }
+
+        System.out.println("\n" + deck.viewDeck().get(num - 1).getQuestion());
+        System.out.println("What is the answer to the question above? ");
+        answer = input.next();
+        if (answer.equals(deck.viewDeck().get(num - 1).getAnswer())) {
+            deck.viewDeck().get(num - 1).updateStudyCounter();
+            deck.viewDeck().get(num - 1).updateStatus();
+        } else {
+            System.out.println("Incorrect Answer.");
+            System.out.println("The correct answer is " + deck.viewDeck().get(num - 1).getAnswer());
+        }
+        viewDeck(deck);
     }
 
     // MODIFIES: this

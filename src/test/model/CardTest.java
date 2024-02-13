@@ -22,6 +22,7 @@ public class CardTest {
         assertEquals("happy", happy.getQuestion());
         assertEquals("feeling content", happy.getAnswer());
         assertFalse(happy.getStatus());
+        assertEquals(0, happy.getStudyCounter());
     }
 
     @Test
@@ -39,12 +40,22 @@ public class CardTest {
     }
 
     @Test
+    void testGetStudyCounter() {
+        assertEquals(0, happy.getStudyCounter());
+    }
+
+    @Test
     void testGetStatus() {
         assertFalse(love.getStatus());
-        love.changeStatus(true);
-        assertTrue(love.getStatus());
-        love.changeStatus(false);
+        love.updateStudyCounter();
+        love.updateStatus();
         assertFalse(love.getStatus());
+        love.updateStudyCounter();
+        love.updateStatus();
+        assertFalse(love.getStatus());
+        love.updateStudyCounter();
+        love.updateStatus();
+        assertTrue(love.getStatus());
     }
 
     @Test
@@ -66,11 +77,37 @@ public class CardTest {
     }
 
     @Test
-    void testSetStatus() {
+    void testUpdateStatus() {
         assertFalse(brave.getStatus());
-        brave.changeStatus(true);
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
         assertTrue(brave.getStatus());
-        brave.changeStatus(false);
-        assertFalse(brave.getStatus());
+    }
+
+    @Test
+    void testUpdateStudyCounter() {
+        assertFalse(happy.getStatus());
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertTrue(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertTrue(happy.getStatus());
     }
 }

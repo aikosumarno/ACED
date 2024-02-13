@@ -34,6 +34,8 @@ public class DeckTest {
     void testDeck() {
         assertTrue(emotions.viewDeck().isEmpty());
         assertTrue(subjects.viewDeck().isEmpty());
+        assertEquals("emotions", emotions.getName());
+        assertEquals("subjects", subjects.getName());
     }
 
     @Test
