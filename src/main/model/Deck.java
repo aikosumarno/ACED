@@ -33,7 +33,7 @@ public class Deck {
 
     // EFFECTS: returns the name of the deck
     public String getName() {
-        return name;
+        return this.name;
     }
 
 
