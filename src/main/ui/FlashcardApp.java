@@ -76,7 +76,7 @@ public class FlashcardApp {
     // MODIFIES: this
     // EFFECTS: adds a new Deck
     private void addDeck() {
-        System.out.println("Enter Deck Name: ");
+        System.out.println("\nEnter Deck Name: ");
         String name = input.next();
         Deck newDeck = new Deck(name);
         collection.addNewDeck(newDeck);
@@ -106,15 +106,24 @@ public class FlashcardApp {
     // EFFECTS: prints out all of the cards in the chosen deck
     private void viewDeck(Deck deck) {
         int num = 1;
+        String status;
 
+        System.out.println("\nCards in " + deck.getName() + ":");
         for (Card current: deck.viewDeck()) {
             System.out.println(num + ". " + current.getQuestion() + ": " + current.getAnswer());
+            if (!current.getStatus()) {
+                status = "not yet learned";
+            } else {
+                status = "mastered";
+            }
+            System.out.println("\t status: " + status);
             num++;
         }
 
         selectDeckActions(deck);
     }
 
+    // EFFECTS: prints and prompts user to select an action and redirects to their choice
     private void selectDeckActions(Deck deck) {
         String choice = "";
         boolean validChoice = false;
@@ -137,8 +146,10 @@ public class FlashcardApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new card to chosen deck
     private void addCard(Deck deck) {
-        System.out.println("Enter Question: ");
+        System.out.println("\nEnter Question: ");
         String question = input.next();
         System.out.println("Enter Answer: ");
         String answer = input.next();
@@ -148,11 +159,14 @@ public class FlashcardApp {
         viewDeck(deck);
     }
 
+    // REQUIRES: card exists in the deck
+    // MODIFIES: this
+    // EFFECTS: edits the details of the card in the deck
     private void editCard(Deck deck) {
         int num = 0;
 
         while (num <= 0 || num > deck.getSize()) {
-            System.out.println("Enter number of card you would like to edit:");
+            System.out.println("\nEnter number of card you would like to edit:");
             num = input.nextInt();
         }
 
@@ -167,11 +181,14 @@ public class FlashcardApp {
         viewDeck(deck);
     }
 
+    // REQUIRES: card exists in the deck
+    // MODIFIES: this
+    // EFFECTS: deletes card from the deck
     private void deleteCard(Deck deck) {
         int num = 0;
 
         while (num <= 0 || num > deck.getSize()) {
-            System.out.println("Enter number of card you would like to delete:");
+            System.out.println("\nEnter number of card you would like to delete:");
             num = input.nextInt();
         }
         num = num - 1;
