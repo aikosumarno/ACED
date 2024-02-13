@@ -78,6 +78,12 @@ public class DeckTest {
     }
 
     @Test
+    void testGetName() {
+        assertEquals("emotions", emotions.getName());
+        assertEquals("subjects", subjects.getName());
+    }
+
+    @Test
     void testFindCard() {
         emotions.addCard(happy);
         assertEquals(1, emotions.findCardNumber(happy));
