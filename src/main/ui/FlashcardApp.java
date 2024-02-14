@@ -152,7 +152,7 @@ public class FlashcardApp {
     }
 
     // REQUIRES: deck.getSize() >= 1
-    // MODIFIES: this
+    // MODIFIES: card in chosen deck
     // EFFECTS: print question of chosen card and updates card study counter and status if answer is entered correctly
     private void studyCard(Deck deck) {
         int num = 0;
@@ -176,7 +176,7 @@ public class FlashcardApp {
         viewDeck(deck);
     }
 
-    // MODIFIES: this
+    // MODIFIES: adds card to deck
     // EFFECTS: adds a new card to chosen deck
     private void addCard(Deck deck) {
         System.out.println("\nEnter Question: ");
@@ -190,7 +190,7 @@ public class FlashcardApp {
     }
 
     // REQUIRES: card exists in the deck
-    // MODIFIES: this
+    // MODIFIES: changes the details of the chosen card in deck
     // EFFECTS: edits the details of the card in the deck
     private void editCard(Deck deck) {
         int num = 0;
@@ -212,7 +212,7 @@ public class FlashcardApp {
     }
 
     // REQUIRES: card exists in the deck
-    // MODIFIES: this
+    // MODIFIES: removes card from deck
     // EFFECTS: deletes card from the deck
     private void deleteCard(Deck deck) {
         int num = 0;
