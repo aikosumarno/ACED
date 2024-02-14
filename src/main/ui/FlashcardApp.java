@@ -137,8 +137,10 @@ public class FlashcardApp {
                 validChoice = true;
             }
         }
-
-        if (choice.equals("s")) {
+        if (choice.equals("s") && deck.getSize() == 0) {
+            System.out.println("No cards to study.");
+            viewDeck(deck);
+        } else if (choice.equals("s")) {
             studyCard(deck);
         } else if (choice.equals("a")) {
             addCard(deck);
