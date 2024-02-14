@@ -24,4 +24,5 @@ and make learning more fun.
 - As a user I want to be able to delete a card from my deck of flashcards. 
 - As a user I want to be able to edit the details of a card in my deck of flashcards.
 - As a user I want to be able to add a new deck of flashcards into my collection. 
+- As a user I want to be able to track how well I have studied the card.
  
