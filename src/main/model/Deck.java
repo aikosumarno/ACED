@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a deck having a list of cards, and a name
 public class Deck {
     private List<Card> currentDeck;
     private String name;

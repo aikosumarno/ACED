@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a collection having a list of decks
 public class Collection {
     private List<Deck> myCollection;
 

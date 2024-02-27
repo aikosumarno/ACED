@@ -6,15 +6,19 @@ import model.Deck;
 
 import java.util.Scanner;
 
+// Flashcard application
 public class FlashcardApp {
     private Collection collection;
 
     private Scanner input;
 
+    // EFFECTS: runs the flashcard application
     public FlashcardApp() {
         runFlashcard();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runFlashcard() {
         boolean keepStudying = true;
         String command;
