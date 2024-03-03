@@ -15,7 +15,7 @@ public class CollectionTest {
     void runBefore() {
         subjects = new Deck("subjects");
         emotions = new Deck("emotions");
-        myCollection = new Collection();
+        myCollection = new Collection("Aiko's Flashcard Collection");
     }
 
     @Test

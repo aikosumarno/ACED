@@ -1,0 +1,33 @@
+{
+  "myCollection": [
+    {
+      "name": "emotions",
+      "currentDeck": [
+        {
+          "question": "Define Happy",
+          "answer": "feeling joyful",
+          "status": false,
+          "studyCounter": 1
+        },
+        {
+          "question": "Define Sad",
+          "answer": "feeling upset",
+          "status": true,
+          "studyCounter": 3
+        }
+      ]
+    },
+    {
+      "name": "objects",
+      "currentDeck": [
+        {
+          "question": "What is a water bottle used for?",
+          "answer": "to hold water",
+          "status": false,
+          "studyCounter": 0
+        }
+      ]
+    }
+  ],
+  "name": "Maya's Flashcard Collection"
+}

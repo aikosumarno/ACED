@@ -63,7 +63,7 @@ public class FlashcardApp {
     // MODIFIES: this
     // EFFECTS: initializes collection
     private void init() {
-        collection = new Collection();
+        collection = new Collection("Aiko's Flashcard Collection");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
