@@ -22,6 +22,16 @@ public class Card {
         this.status = false;
     }
 
+    // EFFECTS: Creates an instance of the class with question set to given question;
+    //          answer set to given answer; status set to given status;
+    //          and studyCounter set to counter
+    public Card(String question, String answer, boolean status, int counter) {
+        this.question = question;
+        this.answer = answer;
+        this.status = status;
+        this.studyCounter = counter;
+    }
+
     // EFFECTS: returns the question on the card
     public String getQuestion() {
         return question;

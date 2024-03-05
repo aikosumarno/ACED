@@ -24,6 +24,11 @@ public class Collection {
         return myCollection;
     }
 
+    // EFFECTS: returns the number of decks in the collection
+    public int getSize() {
+        return myCollection.size();
+    }
+
     // REQUIRES: collection does not already contain a deck with the same name
     // MODIFIES: this
     // EFFECTS: adds new deck to the end of the collection

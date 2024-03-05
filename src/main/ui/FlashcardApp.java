@@ -3,17 +3,23 @@ package ui;
 import model.Card;
 import model.Collection;
 import model.Deck;
+import persistence.JsonReader;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 // Flashcard application
 public class FlashcardApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Collection collection;
-
+    private JsonReader jsonReader;
     private Scanner input;
 
     // EFFECTS: runs the flashcard application
     public FlashcardApp() {
+        input = new Scanner(System.in);
+        collection = new Collection("Aiko's Flashcard Collection");
+        jsonReader = new JsonReader(JSON_STORE);
         runFlashcard();
     }
 
@@ -47,6 +53,8 @@ public class FlashcardApp {
             addDeck();
         } else if (command.equals("s")) {
             selectDeck();
+        } else if (command.equals("l")) {
+            loadCollection();
         } else {
             System.out.println("Choice invalid.");
         }
@@ -57,6 +65,7 @@ public class FlashcardApp {
         System.out.println("\nMenu:");
         System.out.println("\ts -> select existing deck");
         System.out.println("\ta -> add new deck");
+        System.out.println("\tl -> load existing collection from file");
         System.out.println("\tq -> quit");
     }
 
@@ -229,5 +238,16 @@ public class FlashcardApp {
 
         deck.deleteCard(deck.viewDeck().get(num));
         viewDeck(deck);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads collection from file
+    private void loadCollection() {
+        try {
+            collection = jsonReader.read();
+            System.out.println("Loaded " + collection.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
