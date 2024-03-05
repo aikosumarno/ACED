@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a deck having a list of cards, and a name
-public class Deck {
+public class Deck implements Writable {
     private List<Card> currentDeck;
     private String name;
 
@@ -65,5 +69,24 @@ public class Deck {
     // EFFECTS: deletes and returns the card with the given question
     public Card deleteCard(Card card) {
         return currentDeck.remove(findCardNumber(card) - 1);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("currentDeck", cardsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns cards in this deck as a JSON array
+    private JSONArray cardsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Card c : currentDeck) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }

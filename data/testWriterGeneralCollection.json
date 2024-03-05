@@ -1,0 +1,31 @@
+{
+    "name": "Aiko's Flashcard Collection",
+    "myCollection": [
+        {
+            "name": "animals",
+            "currentDeck": [
+                {
+                    "question": "What sound does a dog make?",
+                    "answer": "bark",
+                    "studyCounter": 0,
+                    "status": false
+                },
+                {
+                    "question": "What sound does a cat make?",
+                    "answer": "meow",
+                    "studyCounter": 2,
+                    "status": false
+                }
+            ]
+        },
+        {
+            "name": "devices",
+            "currentDeck": [{
+                "question": "What is a camera used for?",
+                "answer": "take pictures",
+                "studyCounter": 5,
+                "status": true
+            }]
+        }
+    ]
+}

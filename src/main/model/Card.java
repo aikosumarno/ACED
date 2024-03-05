@@ -6,7 +6,10 @@ a status to indicate how well the user has studied,
 and a counter to track how many times the user has studied the card.
  */
 
-public class Card {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Card implements Writable {
     private String question;
     private String answer;
     private boolean status;
@@ -81,5 +84,15 @@ public class Card {
     public int updateStudyCounter() {
         studyCounter++;
         return studyCounter;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("question", question);
+        json.put("answer", answer);
+        json.put("status", status);
+        json.put("studyCounter", studyCounter);
+        return json;
     }
 }

@@ -4,15 +4,18 @@ import model.Card;
 import model.Collection;
 import model.Deck;
 import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
 // Flashcard application
 public class FlashcardApp {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
     private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
     private Scanner input;
 
     // EFFECTS: runs the flashcard application
@@ -20,6 +23,7 @@ public class FlashcardApp {
         input = new Scanner(System.in);
         collection = new Collection("Aiko's Flashcard Collection");
         jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runFlashcard();
     }
 
@@ -51,10 +55,12 @@ public class FlashcardApp {
     private void processCommand(String command) {
         if (command.equals("a")) {
             addDeck();
-        } else if (command.equals("s")) {
+        } else if (command.equals("e")) {
             selectDeck();
         } else if (command.equals("l")) {
             loadCollection();
+        } else if (command.equals("s")) {
+            saveCollection();
         } else {
             System.out.println("Choice invalid.");
         }
@@ -63,9 +69,10 @@ public class FlashcardApp {
     // EFFECTS: displays menu of decks users can choose from in collection or create a new deck
     private void displayCollectionMenu() {
         System.out.println("\nMenu:");
-        System.out.println("\ts -> select existing deck");
+        System.out.println("\te -> select existing deck");
         System.out.println("\ta -> add new deck");
         System.out.println("\tl -> load existing collection from file");
+        System.out.println("\ts -> save work room to file");
         System.out.println("\tq -> quit");
     }
 
@@ -248,6 +255,18 @@ public class FlashcardApp {
             System.out.println("Loaded " + collection.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: saves the collection to file
+    private void saveCollection() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(collection);
+            jsonWriter.close();
+            System.out.println("Saved " + collection.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 }

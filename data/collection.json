@@ -1,0 +1,20 @@
+{
+    "name": "Aiko's Flashcard Collection",
+    "myCollection": [{
+        "name": "emotions",
+        "currentDeck": [
+            {
+                "question": "Define happy",
+                "answer": "feeling joyful",
+                "studyCounter": 1,
+                "status": false
+            },
+            {
+                "question": "Define sad",
+                "answer": "unhappy",
+                "studyCounter": 3,
+                "status": true
+            }
+        ]
+    }]
+}

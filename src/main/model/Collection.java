@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a collection having a list of decks
-public class Collection {
+public class Collection implements Writable {
     private String name;
     private List<Deck> myCollection;
 
@@ -35,5 +39,24 @@ public class Collection {
     public Deck addNewDeck(Deck name) {
         myCollection.add(name);
         return name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("myCollection", decksToJson());
+        return json;
+    }
+
+    // EFFECTS: returns decks in this collection as a JSON array
+    private JSONArray decksToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Deck d : myCollection) {
+            jsonArray.put(d.toJson());
+        }
+
+        return jsonArray;
     }
 }
