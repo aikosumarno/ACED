@@ -21,6 +21,7 @@ public class CollectionTest {
     @Test
     void testCollection() {
         assertTrue( myCollection.getCollection().isEmpty());
+        assertEquals("Aiko's Flashcard Collection", myCollection.getName());
     }
 
     @Test

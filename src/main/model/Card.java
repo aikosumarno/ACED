@@ -50,6 +50,7 @@ public class Card implements Writable {
         return status;
     }
 
+    // EFFECTS: returns the studyCounter of the card
     public int getStudyCounter() {
         return studyCounter;
     }
