@@ -8,6 +8,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 // Flashcard application
@@ -106,21 +107,27 @@ public class FlashcardApp {
 
     // EFFECTS: prompts user to select an existing deck and redirects to their choice
     private void selectDeck() {
-        int choice = 0;
+        int choice = -1;
 
+        if (collection.getCollection().size() == 0) {
+            System.out.println("You have no existing decks.");
+        } else {
+            while (choice > collection.getCollection().size() || choice < 0) {
+                int count = 1;
+                System.out.println("Decks: ");
+                for (Deck current : collection.getCollection()) {
+                    System.out.println(count + ". " + current.getName());
+                    count++;
+                }
+                System.out.println("\nEnter the deck number you want to select or 0 to return to main menu: ");
+                choice = input.nextInt();
 
-        while (choice > collection.getCollection().size() + 1 || choice <= 0) {
-            System.out.println("\n1. return to main menu");
-            int count = 2;
-            for (Deck current: collection.getCollection()) {
-                System.out.println(count + ". " +  current.getName());
-                count++;
+                if (choice >= 1 && choice <= collection.getCollection().size()) {
+                    viewDeck(collection.getCollection().get(choice - 1));
+                } else if (choice != 0) {
+                    System.out.println("Deck number is invalid!");
+                }
             }
-            choice = input.nextInt();
-        }
-
-        if (choice != 1) {
-            viewDeck(collection.getCollection().get(choice - 2));
         }
     }
 
@@ -161,13 +168,34 @@ public class FlashcardApp {
             System.out.println("No cards to study.");
             viewDeck(deck);
         } else if (choice.equals("s")) {
-            studyCard(deck);
+            selectStudyMethod(deck);
         } else if (choice.equals("a")) {
             addCard(deck);
         } else if (choice.equals("e")) {
             editCard(deck);
         } else if (choice.equals("d")) {
             deleteCard(deck);
+        }
+    }
+
+    // EFFECTS: prints and prompts user to select a study method and redirects to their choice
+    private void selectStudyMethod(Deck deck) {
+        int choice = 0;
+
+        while (choice <= 0 || choice > 2) {
+            System.out.println("\nChoose your study method:");
+            System.out.println("1. Review a single card");
+            System.out.println("2. Review the entire deck");
+            System.out.println("Enter Choice: ");
+            choice = input.nextInt();
+            if (choice < 0 || choice > 2) {
+                System.out.println("Invalid option!");
+            } else if (choice == 1) {
+                studyCard(deck);
+            } else if (choice == 2) {
+                studyEntireDeck(deck);
+            }
+
         }
     }
 
@@ -181,18 +209,50 @@ public class FlashcardApp {
         while (num <= 0 || num > deck.getSize()) {
             System.out.println("\nEnter card number you would like to study: ");
             num = input.nextInt();
+            if (num <= 0 || num > deck.getSize()) {
+                System.out.println("Invalid card number!");
+            }
         }
 
         System.out.println("\n" + deck.viewDeck().get(num - 1).getQuestion());
         System.out.println("What is the answer to the question above? ");
         answer = input.next();
         if (answer.equals(deck.viewDeck().get(num - 1).getAnswer())) {
+            System.out.println("That's correct!");
             deck.viewDeck().get(num - 1).updateStudyCounter();
             deck.viewDeck().get(num - 1).updateStatus();
         } else {
             System.out.println("Incorrect Answer.");
             System.out.println("The correct answer is " + deck.viewDeck().get(num - 1).getAnswer());
         }
+        viewDeck(deck);
+    }
+
+    // REQUIRES: deck.getSize() >= 1
+    // MODIFIES: cards in chosen deck
+    // EFFECTS: prints question of every card in deck, checks user's answer
+    //           and updates card study counter and status accordingly
+    private void studyEntireDeck(Deck deck) {
+        int score = 0;
+        int num = 0;
+        String answer;
+        List<Card> cards = deck.viewDeck();
+        for (Card c : cards) {
+            System.out.println("\nQuestion: " + c.getQuestion());
+            System.out.println("Enter Answer: ");
+            answer = input.next();
+            if (answer.equals(c.getAnswer())) {
+                score++;
+                System.out.println("Correct!");
+                deck.viewDeck().get(num).updateStudyCounter();
+                deck.viewDeck().get(num).updateStatus();
+            } else {
+                System.out.println("Incorrect!");
+                System.out.println("Correct Answer: " + c.getAnswer());
+            }
+            num++;
+        }
+        System.out.println("You got " + score + " out of " + cards.size() + " questions right.");
         viewDeck(deck);
     }
 
@@ -228,6 +288,8 @@ public class FlashcardApp {
 
         deck.viewDeck().get(num).editQuestion(newQuestion);
         deck.viewDeck().get(num).editAnswer(newAnswer);
+        deck.viewDeck().get(num).resetStatus();
+        deck.viewDeck().get(num).resetStudyCounter();
         viewDeck(deck);
     }
 

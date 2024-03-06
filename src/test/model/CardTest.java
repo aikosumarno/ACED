@@ -110,4 +110,44 @@ public class CardTest {
         happy.updateStatus();
         assertTrue(happy.getStatus());
     }
+
+    @Test
+    void testResetStatus() {
+        assertFalse(brave.getStatus());
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
+        assertFalse(brave.getStatus());
+        brave.updateStudyCounter();
+        brave.updateStatus();
+        assertTrue(brave.getStatus());
+        brave.resetStatus();
+        assertFalse(brave.getStatus());
+    }
+
+    @Test
+    void testResetStudyCounter() {
+        assertFalse(happy.getStatus());
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertTrue(happy.getStatus());
+        happy.updateStudyCounter();
+        happy.updateStatus();
+        assertTrue(happy.getStatus());
+        happy.resetStudyCounter();
+        happy.updateStatus();
+        assertFalse(happy.getStatus());
+    }
 }

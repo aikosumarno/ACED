@@ -59,14 +59,14 @@ public class Card implements Writable {
     // EFFECTS: changes question to the new question
     public String editQuestion(String newQuestion) {
         this.question = newQuestion;
-        return question; //stub
+        return question;
     }
 
     // MODIFIES: this
     // EFFECTS: changes answer to the new answer
     public String editAnswer(String newAnswer) {
         this.answer = newAnswer;
-        return answer; //stub
+        return answer;
     }
 
     // MODIFIES: this
@@ -76,8 +76,10 @@ public class Card implements Writable {
     public boolean updateStatus() {
         if (studyCounter >= 3) {
             this.status = true;
+        } else {
+            this.status = false;
         }
-        return status; //stub
+        return status;
     }
 
     // MODIFIES: this
@@ -86,6 +88,22 @@ public class Card implements Writable {
         studyCounter++;
         return studyCounter;
     }
+
+    // MODIFIES: this
+    // EFFECTS: resets status to false
+    public boolean resetStatus() {
+        this.status = false;
+        return status;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: resets studyCounter to 0
+    public int resetStudyCounter() {
+        this.studyCounter = 0;
+        return studyCounter;
+    }
+
+
 
     // EFFECTS: returns fields in this collection into JSON
     @Override

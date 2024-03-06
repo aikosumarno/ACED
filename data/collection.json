@@ -1,20 +1,39 @@
 {
     "name": "Aiko's Flashcard Collection",
-    "myCollection": [{
-        "name": "emotions",
-        "currentDeck": [
-            {
-                "question": "Define happy",
-                "answer": "feeling joyful",
-                "studyCounter": 1,
-                "status": false
-            },
-            {
-                "question": "Define sad",
-                "answer": "unhappy",
-                "studyCounter": 3,
-                "status": true
-            }
-        ]
-    }]
+    "myCollection": [
+        {
+            "name": "emotions",
+            "currentDeck": [
+                {
+                    "question": "Define sad",
+                    "answer": "unhappy",
+                    "studyCounter": 3,
+                    "status": true
+                },
+                {
+                    "question": "Define frustrated",
+                    "answer": "anrgy",
+                    "studyCounter": 0,
+                    "status": false
+                }
+            ]
+        },
+        {
+            "name": "jobs",
+            "currentDeck": [
+                {
+                    "question": "What is the job of a teacher?",
+                    "answer": "teach",
+                    "studyCounter": 1,
+                    "status": false
+                },
+                {
+                    "question": "What is the job of a student?",
+                    "answer": "study",
+                    "studyCounter": 2,
+                    "status": false
+                }
+            ]
+        }
+    ]
 }
