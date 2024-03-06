@@ -71,6 +71,7 @@ public class Deck implements Writable {
         return currentDeck.remove(findCardNumber(card) - 1);
     }
 
+    // EFFECTS: returns fields in this collection into JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

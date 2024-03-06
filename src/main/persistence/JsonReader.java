@@ -67,7 +67,7 @@ public class JsonReader {
         addCards(deck, jsonObject);
     }
 
-    // MODIFIES: c
+    // MODIFIES: d
     // EFFECTS: parses cards from JSON object and adds them to deck
     private void addCards(Deck d, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("currentDeck");
@@ -77,7 +77,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: c
+    // MODIFIES: d
     // EFFECTS: parses card from JSON object and adds it to deck
     private void addCard(Deck d, JSONObject jsonObject) {
         String question = jsonObject.getString("question");

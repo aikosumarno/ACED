@@ -86,6 +86,7 @@ public class Card implements Writable {
         return studyCounter;
     }
 
+    // EFFECTS: returns fields in this collection into JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
