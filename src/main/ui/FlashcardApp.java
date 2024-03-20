@@ -6,18 +6,25 @@ import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 // Flashcard application
-public class FlashcardApp {
+public class FlashcardApp extends JFrame {
     private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
     private Scanner input;
+    private JLabel acedlbl;
+    private JLabel deckslbl;
+    private JLabel cardslbl;
+    private JLabel studyCounterlbl;
+    private JLabel studyStatuslbl;
 
     // EFFECTS: runs the flashcard application
     public FlashcardApp() {
@@ -25,7 +32,57 @@ public class FlashcardApp {
         collection = new Collection("Aiko's Flashcard Collection");
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
+        initializeGraphics();
         runFlashcard();
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  draws the JFrame window where this FlashcardApp will operate, and populates the buttons to be used
+    //           to manipulate this flashcard collection
+    private void initializeGraphics() {
+        setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(600,400));
+        setBackground(new Color(10, 50, 100));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setLocationRelativeTo(null);;
+        acedlbl = new JLabel("ACED");
+        acedlbl.setPreferredSize(new Dimension(200, 30));
+        deckslbl = new JLabel(collection.getName());
+        deckslbl.setPreferredSize(new Dimension(200,30));
+        add(acedlbl);
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  a helper method which declares and instantiates all buttons
+    private void createTools() {
+//        JPanel buttonArea = new JPanel();
+//        buttonArea.setLayout(new GridLayout(0,1));
+//        buttonArea.setSize(new Dimension(0, 0));
+//        add(buttonArea, BorderLayout.SOUTH);
+//
+//        Card cra = new RectangleTool(this, toolArea);
+//        tools.add(rectTool);
+//
+//        ShapeTool ovalTool = new OvalTool(this, toolArea);
+//        tools.add(ovalTool);
+//
+//        MoveTool moveTool = new MoveTool(this, toolArea);
+//        tools.add(moveTool);
+//
+//        ResizeTool resizeTool = new ResizeTool(this, toolArea);
+//        tools.add(resizeTool);
+//
+//        DeleteTool deleteTool = new DeleteTool(this, toolArea);
+//        tools.add(deleteTool);
+//
+//        PlayShapeTool playShapeTool = new PlayShapeTool(this, toolArea);
+//        tools.add(playShapeTool);
+//
+//        PlayDrawingTool playDrawingTool = new PlayDrawingTool(this, toolArea);
+//        tools.add(playDrawingTool);
+//
+//        setActiveTool(rectTool);
     }
 
     // MODIFIES: this
@@ -73,7 +130,7 @@ public class FlashcardApp {
         System.out.println("\te -> select existing deck");
         System.out.println("\ta -> add new deck");
         System.out.println("\tl -> load existing collection from file");
-        System.out.println("\ts -> save work room to file");
+        System.out.println("\ts -> save collection to file");
         System.out.println("\tq -> quit");
     }
 
@@ -103,6 +160,7 @@ public class FlashcardApp {
         Deck newDeck = new Deck(name);
         collection.addNewDeck(newDeck);
         System.out.println(name + " deck has been added to collection.");
+//        add(newDeck, BorderLayout.CENTER);
     }
 
     // EFFECTS: prompts user to select an existing deck and redirects to their choice
