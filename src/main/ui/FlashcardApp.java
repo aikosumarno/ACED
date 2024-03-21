@@ -13,6 +13,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.*;
+
 // Flashcard application
 public class FlashcardApp extends JFrame {
     private static final String JSON_STORE = "./data/collection.json";
@@ -20,11 +29,15 @@ public class FlashcardApp extends JFrame {
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
     private Scanner input;
-    private JLabel acedlbl;
     private JLabel deckslbl;
-    private JLabel cardslbl;
-    private JLabel studyCounterlbl;
-    private JLabel studyStatuslbl;
+
+    private JMenuBar menuBar;
+    private JMenu add;
+    private JMenu select;
+    private JMenu save;
+    private JMenu load;
+
+    private JDesktopPane desktop;
 
     // EFFECTS: runs the flashcard application
     public FlashcardApp() {
@@ -32,7 +45,13 @@ public class FlashcardApp extends JFrame {
         collection = new Collection("Aiko's Flashcard Collection");
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
+
+        desktop = new JDesktopPane();
+        desktop.addMouseListener(new DesktopFocusAction());
+
         initializeGraphics();
+//        addButtonPanel();
+        collectionMenu();
         runFlashcard();
     }
 
@@ -40,17 +59,81 @@ public class FlashcardApp extends JFrame {
     // EFFECTS:  draws the JFrame window where this FlashcardApp will operate, and populates the buttons to be used
     //           to manipulate this flashcard collection
     private void initializeGraphics() {
+        setTitle("ACED");
         setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(600,400));
-        setBackground(new Color(10, 50, 100));
+        setMinimumSize(new Dimension(800,500));
+        setBackground(new Color(205, 239, 255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);;
-        acedlbl = new JLabel("ACED");
-        acedlbl.setPreferredSize(new Dimension(200, 30));
         deckslbl = new JLabel(collection.getName());
         deckslbl.setPreferredSize(new Dimension(200,30));
-        add(acedlbl);
+        add(deckslbl);
+
+        Font font = new Font("Nunito", Font.BOLD, 20);
+        UIManager.put("Menu.font", font);
+
+        menuBar = new JMenuBar();
+        add = new JMenu("Add");
+        select = new JMenu("Select");
+        save = new JMenu("Save");
+        load = new JMenu("Load");
+
+        menuBar.add(add);
+        menuBar.add(select);
+        menuBar.add(save);
+        menuBar.add(load);
+
+//        Font font = new Font("Rubik Doodle Shadow", Font.PLAIN, 20);
+//        UIManager.put()
+    }
+
+    /**
+     * Helper to add action buttons.
+     */
+    private void addButtonPanel() {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4,2));
+//        buttonPanel.add(new JButton(new addNewDeckAction()));
+//        buttonPanel.add(new JButton(new LoadCollectionAction()));
+//        buttonPanel.add(new JButton(new selectDeckAction()));
+//        buttonPanel.add(new JButton(new saveCollectionAction()));
+        add(buttonPanel, BorderLayout.WEST);
+    }
+
+    /**
+     * Adds menu bar.
+     */
+    private void addMenu() {
+        menuBar = new JMenuBar();
+        add = new JMenu("Add");
+        select = new JMenu("Select");
+        save = new JMenu("Save");
+        load = new JMenu("Load");
+
+        menuBar.add(add);
+        menuBar.add(select);
+        menuBar.add(save);
+        menuBar.add(load);
+
+        setJMenuBar(menuBar);
+    }
+
+    // EFFECTS: creates the menu bar found on the collections page
+    private void collectionMenu() {
+
+        menuBar = new JMenuBar();
+        add = new JMenu("Add");
+        select = new JMenu("Select");
+        save = new JMenu("Save");
+        load = new JMenu("Load");
+
+        menuBar.add(add);
+        menuBar.add(select);
+        menuBar.add(save);
+        menuBar.add(load);
+
+        setJMenuBar(menuBar);
     }
 
     // MODIFIES: this
@@ -387,6 +470,17 @@ public class FlashcardApp extends JFrame {
             System.out.println("Saved " + collection.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    /**
+     * Represents action to be taken when user clicks desktop
+     * to switch focus. (Needed for key handling.)
+     */
+    private class DesktopFocusAction extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            FlashcardApp.this.requestFocusInWindow();
         }
     }
 }
