@@ -6,38 +6,18 @@ import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.*;
-
 // Flashcard application
-public class FlashcardApp extends JFrame {
+public class FlashcardApp {
     private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
     private Scanner input;
-    private JLabel deckslbl;
-
-    private JMenuBar menuBar;
-    private JMenu add;
-    private JMenu select;
-    private JMenu save;
-    private JMenu load;
-
-    private JDesktopPane desktop;
 
     // EFFECTS: runs the flashcard application
     public FlashcardApp() {
@@ -46,112 +26,9 @@ public class FlashcardApp extends JFrame {
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
 
-        desktop = new JDesktopPane();
-        desktop.addMouseListener(new DesktopFocusAction());
-
-        initializeGraphics();
-//        addButtonPanel();
-//        collectionMenu();
         runFlashcard();
     }
 
-    // MODIFIES: this
-    // EFFECTS:  draws the JFrame window where this FlashcardApp will operate, and populates the buttons to be used
-    //           to manipulate this flashcard collection
-    private void initializeGraphics() {
-        setTitle("ACED");
-        setLayout(new FlowLayout());
-        setMinimumSize(new Dimension(800,500));
-        setBackground(new Color(205, 239, 255));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        deckslbl = new JLabel(collection.getName());
-        deckslbl.setPreferredSize(new Dimension(200,30));
-        add(deckslbl);
-
-        Font font = new Font("Nunito", Font.BOLD, 20);
-        UIManager.put("Menu.font", font);
-
-        menuBar = new JMenuBar();
-        add = new JMenu("Add");
-        select = new JMenu("Select");
-        save = new JMenu("Save");
-        load = new JMenu("Load");
-
-        menuBar.add(add);
-        menuBar.add(select);
-        menuBar.add(save);
-        menuBar.add(load);
-        setJMenuBar(menuBar);
-
-//        Font font = new Font("Rubik Doodle Shadow", Font.PLAIN, 20);
-//        UIManager.put()
-    }
-
-    /**
-     * Helper to add action buttons.
-     */
-    private void addButtonPanel() {
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
-//        buttonPanel.add(new JButton(new addNewDeckAction()));
-//        buttonPanel.add(new JButton(new LoadCollectionAction()));
-//        buttonPanel.add(new JButton(new selectDeckAction()));
-//        buttonPanel.add(new JButton(new saveCollectionAction()));
-        add(buttonPanel, BorderLayout.WEST);
-    }
-
-    /**
-     * Adds menu bar.
-     */
-    private void collectionMenu() {
-
-        menuBar = new JMenuBar();
-        add = new JMenu("Add");
-        select = new JMenu("Select");
-        save = new JMenu("Save");
-        load = new JMenu("Load");
-
-        menuBar.add(add);
-        menuBar.add(select);
-        menuBar.add(save);
-        menuBar.add(load);
-
-        setJMenuBar(menuBar);
-    }
-
-    // MODIFIES: this
-    // EFFECTS:  a helper method which declares and instantiates all buttons
-    private void createTools() {
-//        JPanel buttonArea = new JPanel();
-//        buttonArea.setLayout(new GridLayout(0,1));
-//        buttonArea.setSize(new Dimension(0, 0));
-//        add(buttonArea, BorderLayout.SOUTH);
-//
-//        Card cra = new RectangleTool(this, toolArea);
-//        tools.add(rectTool);
-//
-//        ShapeTool ovalTool = new OvalTool(this, toolArea);
-//        tools.add(ovalTool);
-//
-//        MoveTool moveTool = new MoveTool(this, toolArea);
-//        tools.add(moveTool);
-//
-//        ResizeTool resizeTool = new ResizeTool(this, toolArea);
-//        tools.add(resizeTool);
-//
-//        DeleteTool deleteTool = new DeleteTool(this, toolArea);
-//        tools.add(deleteTool);
-//
-//        PlayShapeTool playShapeTool = new PlayShapeTool(this, toolArea);
-//        tools.add(playShapeTool);
-//
-//        PlayDrawingTool playDrawingTool = new PlayDrawingTool(this, toolArea);
-//        tools.add(playDrawingTool);
-//
-//        setActiveTool(rectTool);
-    }
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -458,14 +335,4 @@ public class FlashcardApp extends JFrame {
         }
     }
 
-    /**
-     * Represents action to be taken when user clicks desktop
-     * to switch focus. (Needed for key handling.)
-     */
-    private class DesktopFocusAction extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            FlashcardApp.this.requestFocusInWindow();
-        }
-    }
 }

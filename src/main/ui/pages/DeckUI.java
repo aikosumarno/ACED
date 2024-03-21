@@ -24,6 +24,7 @@ public class DeckUI extends JFrame implements ActionListener {
     public DeckUI() {
         setTitle("ACED");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(new Color(205, 239, 255));
         setSize(800, 500);
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
