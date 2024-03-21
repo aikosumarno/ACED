@@ -51,7 +51,7 @@ public class FlashcardApp extends JFrame {
 
         initializeGraphics();
 //        addButtonPanel();
-        collectionMenu();
+//        collectionMenu();
         runFlashcard();
     }
 
@@ -60,12 +60,12 @@ public class FlashcardApp extends JFrame {
     //           to manipulate this flashcard collection
     private void initializeGraphics() {
         setTitle("ACED");
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         setMinimumSize(new Dimension(800,500));
         setBackground(new Color(205, 239, 255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setLocationRelativeTo(null);;
+        setLocationRelativeTo(null);
         deckslbl = new JLabel(collection.getName());
         deckslbl.setPreferredSize(new Dimension(200,30));
         add(deckslbl);
@@ -83,6 +83,7 @@ public class FlashcardApp extends JFrame {
         menuBar.add(select);
         menuBar.add(save);
         menuBar.add(load);
+        setJMenuBar(menuBar);
 
 //        Font font = new Font("Rubik Doodle Shadow", Font.PLAIN, 20);
 //        UIManager.put()
@@ -104,22 +105,6 @@ public class FlashcardApp extends JFrame {
     /**
      * Adds menu bar.
      */
-    private void addMenu() {
-        menuBar = new JMenuBar();
-        add = new JMenu("Add");
-        select = new JMenu("Select");
-        save = new JMenu("Save");
-        load = new JMenu("Load");
-
-        menuBar.add(add);
-        menuBar.add(select);
-        menuBar.add(save);
-        menuBar.add(load);
-
-        setJMenuBar(menuBar);
-    }
-
-    // EFFECTS: creates the menu bar found on the collections page
     private void collectionMenu() {
 
         menuBar = new JMenuBar();

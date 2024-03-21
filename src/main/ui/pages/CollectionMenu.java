@@ -17,7 +17,7 @@ public class CollectionMenu implements ActionListener {
     public CollectionMenu() {
         frame = new JFrame();
         frame.setTitle("ACED");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800,500);
         frame.setLayout(new FlowLayout());
         frame.setLocationRelativeTo(null);
