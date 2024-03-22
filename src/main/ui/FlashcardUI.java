@@ -29,8 +29,8 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
     private JButton loadCollection;
     private JButton saveCollection;
 
-//    private List<String> deckNames;
-    private String[] deckNames;
+    private List<String> deckNames;
+//    private String[] deckNames;
     private JButton[] buttons;
 
     public FlashcardUI() {
@@ -61,7 +61,7 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
         img = new ImageIcon(resizedImg);
         JLabel collectionlbl = new JLabel();
-        collectionlbl.setText("Flashcard Collection");
+        collectionlbl.setText(collection.getName());
         collectionlbl.setIcon(img);
         collectionlbl.setHorizontalTextPosition(JLabel.RIGHT);
         collectionlbl.setVerticalTextPosition(JLabel.CENTER);
@@ -69,7 +69,7 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         collectionlbl.setIconTextGap(15);
         collectionlbl.setVerticalAlignment(JLabel.TOP);
         collectionlbl.setHorizontalAlignment(JLabel.CENTER);
-        collectionlbl.setBounds(250, 0, 300,50);
+        collectionlbl.setBounds(0, 0, 800,50);
         this.add(collectionlbl);
     }
 
@@ -143,8 +143,6 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         decksDisplayPanel.setBackground(new Color(205, 239, 255));
         decksDisplayPanel.setBounds(0, 100, 800,350);
         decksDisplayPanel.setLayout(new FlowLayout());
-
-        displayDecks();
         this.add(decksDisplayPanel);
     }
 
@@ -152,13 +150,21 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
      * helper method to display decks in collection
      */
     public void displayDecks() {
-        deckNames = collection.getDeckNames().toArray(new String[0]);
-        buttons = new JButton[deckNames.length];
+        deckNames = collection.getDeckNames();
+//        deckNames = new String[]{"Question 1", "Question 2", "Question 3"};
+        buttons = new JButton[deckNames.size()];
 
         for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new JButton(deckNames[i]);
+            buttons[i] = new JButton(deckNames.get(i));
+            buttons[i].setSize(180, 50);
+            buttons[i].setFont(new Font("Dialog", Font.PLAIN, 20));
             decksDisplayPanel.add(buttons[i]);
+            decksDisplayPanel.setVisible(true);
         }
+        decksDisplayPanel.revalidate();
+        decksDisplayPanel.repaint(); // updates the panel
+        this.validate();
+        this.repaint();
     }
 
     // MODIFIES: this
@@ -167,7 +173,6 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         try {
             collection = jsonReader.read();
             System.out.println("Loaded " + collection.getName() + " from " + JSON_STORE);
-            deckCollectionPanel();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
@@ -195,7 +200,7 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
             System.out.println("New Deck Created");
         } else if (e.getSource() == loadCollection) {
             loadCollection();
-            deckCollectionPanel();
+            displayDecks();
         } else if (e.getSource() == saveCollection) {
             saveCollection();
         }
