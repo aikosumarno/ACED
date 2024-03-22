@@ -11,9 +11,13 @@ public class FlashcardUI extends JFrame implements ActionListener {
     private static final int HEIGHT = 600;
 
     private JPanel collectionButtonPanel;
+    private JPanel decksDisplayPanel;
     private JButton addDeck;
     private JButton loadCollection;
     private JButton saveCollection;
+
+    private String[] questions;
+    private JButton[] buttons;
 
     public FlashcardUI() {
         this.setTitle("ACED");
@@ -23,6 +27,18 @@ public class FlashcardUI extends JFrame implements ActionListener {
 
         this.getContentPane().setBackground(new Color(205, 239, 255));
 
+        collectionhHeading();
+        collectionButtonsPanel();
+        displayLabel();
+        deckCollectionPanel();
+        this.setLayout(null);
+        this.setVisible(true);
+    }
+
+    /**
+    helper method for Collection Menu Heading
+     */
+    public void collectionhHeading() {
         ImageIcon img = new ImageIcon("src/main/ui/images/flashcards.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
         img = new ImageIcon(resizedImg);
@@ -36,13 +52,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         collectionlbl.setVerticalAlignment(JLabel.TOP);
         collectionlbl.setHorizontalAlignment(JLabel.CENTER);
         collectionlbl.setBounds(250, 0, 300,50);
-
-
         this.add(collectionlbl);
-        collectionButtonsPanel();
-        deckCollectionPanel();
-        this.setLayout(null);
-        this.setVisible(true);
     }
 
     /**
@@ -89,25 +99,50 @@ public class FlashcardUI extends JFrame implements ActionListener {
         collectionButtonPanel.add(saveCollection);
     }
 
-
-
     /**
-    helper method to create panel to display decks
+     * helper method to create label and panel for displaying decks
      */
-    public void deckCollectionPanel() {
+    public void displayLabel() {
         JLabel deckCollectionlbl = new JLabel();
         deckCollectionlbl.setText("  Your Decks:");
         deckCollectionlbl.setFont(new Font("Dialog", Font.PLAIN, 20));
         deckCollectionlbl.setVerticalAlignment(JLabel.TOP);
         deckCollectionlbl.setHorizontalAlignment(JLabel.LEFT);
         deckCollectionlbl.setBounds(0, 50, 200,20);
-        JPanel decksDisplayPanel = new JPanel();
+        JPanel labelDisplayPanel = new JPanel();
+        labelDisplayPanel.setBackground(new Color(205, 239, 255));
+        labelDisplayPanel.setBounds(0, 50, 200,20);
+        labelDisplayPanel.setLayout(new BorderLayout());
+        labelDisplayPanel.add(deckCollectionlbl);
+        this.add(labelDisplayPanel);
+    }
+
+    /**
+    helper method to create panel to display decks
+     */
+    public void deckCollectionPanel() {
+        decksDisplayPanel = new JPanel();
         decksDisplayPanel.setBackground(new Color(205, 239, 255));
-        decksDisplayPanel.setBounds(0, 50, 800,350);
-        decksDisplayPanel.setLayout(new BorderLayout());
-        decksDisplayPanel.add(deckCollectionlbl);
+        decksDisplayPanel.setBounds(0, 100, 800,350);
+        decksDisplayPanel.setLayout(new FlowLayout());
+
+        displayDecks();
         this.add(decksDisplayPanel);
     }
+
+    /**
+     * helper method to display decks in collection
+     */
+    public void displayDecks() {
+        questions = new String[]{"Question 1", "Question 2", "Question 3"};
+        buttons = new JButton[questions.length];
+
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i] = new JButton(questions[i]);
+            decksDisplayPanel.add(buttons[i]);
+        }
+    }
+
 
     public static void main(String[] args) {
         new FlashcardUI();
