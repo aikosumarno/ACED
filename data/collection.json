@@ -37,7 +37,12 @@
         },
         {
             "name": "test",
-            "currentDeck": []
+            "currentDeck": [{
+                "question": "How many letters are in the word test?",
+                "answer": "four",
+                "studyCounter": 0,
+                "status": false
+            }]
         }
     ]
 }

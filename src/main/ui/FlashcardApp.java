@@ -105,7 +105,6 @@ public class FlashcardApp {
         Deck newDeck = new Deck(name);
         collection.addNewDeck(newDeck);
         System.out.println(name + " deck has been added to collection.");
-//        add(newDeck, BorderLayout.CENTER);
     }
 
     // EFFECTS: prompts user to select an existing deck and redirects to their choice

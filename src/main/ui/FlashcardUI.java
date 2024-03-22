@@ -1,8 +1,10 @@
 package ui;
 
 import model.Collection;
+import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.pages.DeckUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,9 +83,7 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         collectionButtonPanel.setBackground(new Color(000435));
         collectionButtonPanel.setBounds(0,400, 800,200);
         collectionButtonPanel.setLayout(null);
-
         collectionButtons();
-
         this.add(collectionButtonPanel);
     }
 
@@ -151,13 +151,13 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
      */
     public void displayDecks() {
         deckNames = collection.getDeckNames();
-//        deckNames = new String[]{"Question 1", "Question 2", "Question 3"};
         buttons = new JButton[deckNames.size()];
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new JButton(deckNames.get(i));
             buttons[i].setSize(180, 50);
             buttons[i].setFont(new Font("Dialog", Font.PLAIN, 20));
+            buttons[i].addActionListener(this);
             decksDisplayPanel.add(buttons[i]);
             decksDisplayPanel.setVisible(true);
         }
@@ -190,6 +190,25 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new Deck
+    private void addDeck() {
+        String name = JOptionPane.showInputDialog("Enter Deck Name: ");
+        Deck newDeck = new Deck(name);
+        collection.addNewDeck(newDeck);
+        System.out.println(name + " deck has been added to collection.");
+        JButton newDeckButton = new JButton(name);
+        newDeckButton.setSize(180, 50);
+        newDeckButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+        newDeckButton.addActionListener(this);
+        decksDisplayPanel.add(newDeckButton);
+        decksDisplayPanel.setVisible(true);
+        decksDisplayPanel.revalidate();
+        decksDisplayPanel.repaint(); // updates the panel
+        this.validate();
+        this.repaint();
+    }
+
     public static void main(String[] args) {
         new FlashcardUI();
     }
@@ -197,12 +216,23 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addDeck) {
-            System.out.println("New Deck Created");
+            addDeck();
         } else if (e.getSource() == loadCollection) {
             loadCollection();
             displayDecks();
         } else if (e.getSource() == saveCollection) {
             saveCollection();
+        } else if (collection.getDeckNames().contains(e.getActionCommand())) {
+            DeckUI chosenDeck = null;
+            System.out.println("testing buttons");
+            String action = e.getActionCommand();
+            List<String> deckNames = collection.getDeckNames();
+            for (int i = 0; i < deckNames.size(); i++) {
+                if (deckNames.get(i).equals(action)) {
+                    chosenDeck = new DeckUI(collection.getCollection().get(i));
+                }
+            }
+            chosenDeck.setVisible(true);
         }
     }
 

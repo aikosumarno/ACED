@@ -41,6 +41,24 @@ public class Deck implements Writable {
         return this.name;
     }
 
+    // EFFECTS: returns the list of questions in the deck
+    public List<String> getQuestions() {
+        List<String> questions = new ArrayList<>();
+        for (Card c : currentDeck) {
+            questions.add(c.getQuestion());
+        }
+        return questions;
+    }
+
+    // EFFECTS: returns the list of answers in the deck
+    public List<String> getAnswers() {
+        List<String> answers = new ArrayList<>();
+        for (Card c : currentDeck) {
+            answers.add(c.getAnswer());
+        }
+        return answers;
+    }
+
 
     // REQUIRES: currentDeck.size() != 0
     // EFFECTS: returns the card's position in the list,

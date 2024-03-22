@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -52,6 +55,8 @@ public class DeckTest {
 
     @Test
     void testViewDeck() {
+        List<String> questions = new ArrayList<>();
+        List<String> answers = new ArrayList<>();
         assertTrue(emotions.viewDeck().isEmpty());
         emotions.addCard(angry);
         assertEquals(angry, emotions.viewDeck().get(0));
@@ -66,6 +71,14 @@ public class DeckTest {
         emotions.addCard(happy);
         assertEquals(3, emotions.getSize());
         assertEquals(happy, emotions.viewDeck().get(2));
+        questions.add("angry");
+        questions.add("curious");
+        questions.add("happy");
+        answers.add("to feel irritated");
+        answers.add("eager to learn");
+        answers.add("feeling content");
+        assertEquals(questions, emotions.getQuestions());
+        assertEquals(answers, emotions.getAnswers());
     }
 
     @Test
