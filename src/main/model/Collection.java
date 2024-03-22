@@ -28,6 +28,15 @@ public class Collection implements Writable {
         return myCollection;
     }
 
+    // EFFECTS: returns a list of deck names
+    public List<String> getDeckNames() {
+        List<String> deckNames = new ArrayList<>();
+        for (Deck d : myCollection) {
+            deckNames.add(d.getName());
+        }
+        return deckNames;
+    }
+
     // EFFECTS: returns the number of decks in the collection
     public int getSize() {
         return myCollection.size();

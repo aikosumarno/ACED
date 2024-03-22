@@ -1,12 +1,25 @@
 package ui;
 
+import model.Collection;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
-public class FlashcardUI extends JFrame implements ActionListener {
+public class FlashcardUI extends JFrame implements ActionListener, MouseListener {
+    private static final String JSON_STORE = "./data/collection.json";
+    private Collection collection;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
+
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
@@ -16,10 +29,15 @@ public class FlashcardUI extends JFrame implements ActionListener {
     private JButton loadCollection;
     private JButton saveCollection;
 
-    private String[] questions;
+//    private List<String> deckNames;
+    private String[] deckNames;
     private JButton[] buttons;
 
     public FlashcardUI() {
+        collection = new Collection("Aiko's Flashcard Collection");
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
+
         this.setTitle("ACED");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -27,7 +45,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
 
         this.getContentPane().setBackground(new Color(205, 239, 255));
 
-        collectionhHeading();
+        collectionHeading();
         collectionButtonsPanel();
         displayLabel();
         deckCollectionPanel();
@@ -38,7 +56,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
     /**
     helper method for Collection Menu Heading
      */
-    public void collectionhHeading() {
+    public void collectionHeading() {
         ImageIcon img = new ImageIcon("src/main/ui/images/flashcards.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
         img = new ImageIcon(resizedImg);
@@ -134,15 +152,38 @@ public class FlashcardUI extends JFrame implements ActionListener {
      * helper method to display decks in collection
      */
     public void displayDecks() {
-        questions = new String[]{"Question 1", "Question 2", "Question 3"};
-        buttons = new JButton[questions.length];
+        deckNames = collection.getDeckNames().toArray(new String[0]);
+        buttons = new JButton[deckNames.length];
 
         for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new JButton(questions[i]);
+            buttons[i] = new JButton(deckNames[i]);
             decksDisplayPanel.add(buttons[i]);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads collection from file
+    private void loadCollection() {
+        try {
+            collection = jsonReader.read();
+            System.out.println("Loaded " + collection.getName() + " from " + JSON_STORE);
+            deckCollectionPanel();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: saves the collection to file
+    private void saveCollection() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(collection);
+            jsonWriter.close();
+            System.out.println("Saved " + collection.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
 
     public static void main(String[] args) {
         new FlashcardUI();
@@ -153,9 +194,35 @@ public class FlashcardUI extends JFrame implements ActionListener {
         if (e.getSource() == addDeck) {
             System.out.println("New Deck Created");
         } else if (e.getSource() == loadCollection) {
-            System.out.println("Collection Loaded");
+            loadCollection();
+            deckCollectionPanel();
         } else if (e.getSource() == saveCollection) {
-            System.out.println("Collection Saved");
+            saveCollection();
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
