@@ -1,5 +1,6 @@
 package ui.pages;
 
+import model.Card;
 import model.Deck;
 
 import javax.swing.*;
@@ -45,10 +46,15 @@ public class DeckUI extends JFrame implements ActionListener {
         menuBar = new JMenuBar();
         study = new JMenu("Study");
         studyDeck = new JMenuItem("Review Entire Deck");
+        studyDeck.addActionListener(this);
         studyCard = new JMenuItem("Review a Card");
+        studyCard.addActionListener(this);
         add = new JMenu("Add");
+        add.addActionListener(this);
         edit = new JMenu("Edit");
+        edit.addActionListener(this);
         delete = new JMenu("Delete");
+        delete.addActionListener(this);
         returnToCollection = new JMenu("Return to Collection");
 
         menuBar.add(study);
@@ -66,26 +72,84 @@ public class DeckUI extends JFrame implements ActionListener {
         answers = deck.getAnswers();
         currentFlashcardIndex = 0;
 
-        deckLabel = new JLabel(questions.get(currentFlashcardIndex));
-        deckLabel.setHorizontalAlignment(JLabel.CENTER);
+        if (questions.size() > 0) {
+            deckLabel = new JLabel(questions.get(currentFlashcardIndex));
+            deckLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        // buttons
-        showAnswerButton = new JButton("Show Answer");
-        showAnswerButton.addActionListener(this);
 
-        nextButton = new JButton("Next");
-        nextButton.addActionListener(this);
+            // buttons
+            showAnswerButton = new JButton("Show Answer");
+            showAnswerButton.addActionListener(this);
 
-        // components
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
-        contentPane.add(deckLabel, BorderLayout.CENTER);
+            nextButton = new JButton("Next");
+            nextButton.addActionListener(this);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 8, 1));
-        buttonPanel.add(showAnswerButton);
-        buttonPanel.add(nextButton);
-        contentPane.add(buttonPanel, BorderLayout.SOUTH);
+            // components
+            Container contentPane = getContentPane();
+            contentPane.setLayout(new BorderLayout());
+            contentPane.add(deckLabel, BorderLayout.CENTER);
+
+            JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 8, 1));
+            buttonPanel.add(showAnswerButton);
+            buttonPanel.add(nextButton);
+            contentPane.add(buttonPanel, BorderLayout.SOUTH);
+        } else {
+            deckLabel = new JLabel("No cards in deck");
+            deckLabel.setHorizontalAlignment(JLabel.CENTER);
+        }
+
     }
+
+    // MODIFIES: adds card to deck
+    // EFFECTS: adds a new card to chosen deck
+    private void addCard() {
+        String question = JOptionPane.showInputDialog("Enter Question: ");
+        String answer = JOptionPane.showInputDialog("Enter answer: ");
+        Card newCard = new Card(question, answer);
+        deck.addCard(newCard);
+        System.out.println("Card has been added to deck.");
+        displayCards();
+    }
+
+    // REQUIRES: card exists in the deck
+    // MODIFIES: changes the details of the chosen card in deck
+    // EFFECTS: edits the details of the card in the deck
+//    private void editCard(Deck deck) {
+//        int num = 0;
+//
+//        while (num <= 0 || num > deck.getSize()) {
+//            System.out.println("\nEnter number of card you would like to edit:");
+//            num = input.nextInt();
+//        }
+//
+//        num = num - 1;
+//        System.out.println("Enter New Question: ");
+//        String newQuestion = input.next();
+//        System.out.println("Enter New Answer: ");
+//        String newAnswer = input.next();
+//
+//        deck.viewDeck().get(num).editQuestion(newQuestion);
+//        deck.viewDeck().get(num).editAnswer(newAnswer);
+//        deck.viewDeck().get(num).resetStatus();
+//        deck.viewDeck().get(num).resetStudyCounter();
+//        viewDeck(deck);
+//    }
+//
+//    // REQUIRES: card exists in the deck
+//    // MODIFIES: removes card from deck
+//    // EFFECTS: deletes card from the deck
+//    private void deleteCard(Deck deck) {
+//        int num = 0;
+//
+//        while (num <= 0 || num > deck.getSize()) {
+//            System.out.println("\nEnter number of card you would like to delete:");
+//            num = input.nextInt();
+//        }
+//        num = num - 1;
+//
+//        deck.deleteCard(deck.viewDeck().get(num));
+//        viewDeck(deck);
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -104,12 +168,9 @@ public class DeckUI extends JFrame implements ActionListener {
             showAnswerButton.setEnabled(true);
             nextButton.setEnabled(false);
         }
+        if (e.getSource() == add) {
+            addCard();
+        }
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            DeckUI deckUI = new DeckUI();
-//            deckUI.setVisible(true);
-//        });
-//    }
 }

@@ -10,17 +10,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class FlashcardUI extends JFrame implements ActionListener, MouseListener {
+public class FlashcardUI extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
+    private boolean loaded = false;
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -32,7 +31,6 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
     private JButton saveCollection;
 
     private List<String> deckNames;
-//    private String[] deckNames;
     private JButton[] buttons;
 
     public FlashcardUI() {
@@ -153,13 +151,16 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
         deckNames = collection.getDeckNames();
         buttons = new JButton[deckNames.size()];
 
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new JButton(deckNames.get(i));
-            buttons[i].setSize(180, 50);
-            buttons[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-            buttons[i].addActionListener(this);
-            decksDisplayPanel.add(buttons[i]);
-            decksDisplayPanel.setVisible(true);
+        if (!loaded) {
+            for (int i = 0; i < buttons.length; i++) {
+                buttons[i] = new JButton(deckNames.get(i));
+                buttons[i].setSize(180, 50);
+                buttons[i].setFont(new Font("Dialog", Font.PLAIN, 20));
+                buttons[i].addActionListener(this);
+                decksDisplayPanel.add(buttons[i]);
+                decksDisplayPanel.setVisible(true);
+            }
+            loaded = true;
         }
         decksDisplayPanel.revalidate();
         decksDisplayPanel.repaint(); // updates the panel
@@ -234,30 +235,5 @@ public class FlashcardUI extends JFrame implements ActionListener, MouseListener
             }
             chosenDeck.setVisible(true);
         }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }
