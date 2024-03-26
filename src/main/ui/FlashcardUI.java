@@ -25,16 +25,22 @@ public class FlashcardUI extends JFrame implements ActionListener {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
+    private JWindow loadingWindow;
+    private JPanel logoPanel;
     private JPanel collectionButtonPanel;
     private JPanel decksDisplayPanel;
     private JButton addDeck;
     private JButton loadCollection;
     private JButton saveCollection;
+    private JProgressBar progressBar;
+
+    private Timer timer;
 
     private List<String> deckNames;
     private JButton[] buttons;
 
     public FlashcardUI() {
+        loadingAppScreen();
         collection = new Collection("Aiko's Flashcard Collection");
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -51,14 +57,14 @@ public class FlashcardUI extends JFrame implements ActionListener {
         displayLabel();
         deckCollectionPanel();
         this.setLayout(null);
-        this.setVisible(true);
+//        this.setVisible(true);
     }
 
     /**
     helper method for Collection Menu Heading
      */
     public void collectionHeading() {
-        ImageIcon img = new ImageIcon("src/main/ui/images/flashcards.png");
+        ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
         img = new ImageIcon(resizedImg);
         JLabel collectionlbl = new JLabel();
@@ -211,9 +217,58 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
-    public static void main(String[] args) {
-        new FlashcardUI();
+    /**
+     * helper splash screen to load app
+     */
+    public void loadingAppScreen() {
+        loadingWindow = new JWindow(this);
+        loadingWindow.setSize(800, 600);
+        loadingWindow.setLocationRelativeTo(null);
+        loadingWindow.setVisible(true);
+
+        logoPanel();
+        loadingWindow.add(logoPanel);
+
+        progressBar = new JProgressBar(0,100);
+        progressBar.setForeground(new Color(0, 0, 128));
+        loadingWindow.add(BorderLayout.PAGE_END, progressBar);
+        loadingWindow.revalidate();
+        loadProgressBar();
     }
+
+    public void loadProgressBar() {
+        timer = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int x = progressBar.getValue();
+                if (x == 100) {
+                    loadingWindow.dispose();
+                    FlashcardUI.this.setVisible(true);
+                    timer.stop();
+                } else {
+                    progressBar.setValue(x + 8);
+                }
+            }
+        });
+        timer.start();
+    }
+
+    public void logoPanel() {
+        logoPanel = new JPanel();
+        ImageIcon img = new ImageIcon("src/main/ui/images/AcedLogo.png");
+        Image resizedImg = img.getImage().getScaledInstance(275, 365,  java.awt.Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(resizedImg);
+        JLabel label = new JLabel();
+        label.setIcon(image);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalAlignment(JLabel.CENTER);
+        logoPanel.add(label);
+        logoPanel.setBackground(new Color(205, 239, 255));
+    }
+
+//    public static void main(String[] args) {
+//        new FlashcardUI();
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

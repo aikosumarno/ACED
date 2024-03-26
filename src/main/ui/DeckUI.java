@@ -28,6 +28,8 @@ public class DeckUI extends JFrame implements ActionListener {
     private List<String> answers;
     private int currentFlashcardIndex;
 
+    private ImageIcon logo;
+
     public DeckUI(Deck deck) {
         this.currentDeck = deck;
 
@@ -39,10 +41,14 @@ public class DeckUI extends JFrame implements ActionListener {
         buttonPanel();
         actionPanel();
         cardDisplayPanel();
+        initializeLogoIcon();
         this.setLayout(null);
         this.setVisible(true);
     }
 
+    /**
+     * helper to create panel for buttons
+     */
     public void buttonPanel() {
         deckButtonPanel = new JPanel();
         deckButtonPanel.setBackground(new Color(000435));
@@ -57,6 +63,9 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(deckButtonPanel);
     }
 
+    /**
+     * helper to create buttons
+     */
     public void deckButtons() {
         study = new JButton("Study");
         study.addActionListener(this);
@@ -84,6 +93,9 @@ public class DeckUI extends JFrame implements ActionListener {
         returnToCollection.setFont(new Font("Dialog", Font.PLAIN, 20));
     }
 
+    /**
+     * helper to create panel and buttons for show answer and next
+     */
     public void actionPanel() {
         actionButtonPanel = new JPanel();
         actionButtonPanel.setBackground(new Color(0,0,128));
@@ -102,6 +114,9 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(actionButtonPanel);
     }
 
+    /**
+     * helper to create panel for displaying the cards
+     */
     public void cardDisplayPanel() {
         cardPanel = new JPanel();
         cardPanel.setBackground(new Color(205, 239, 255));
@@ -129,6 +144,12 @@ public class DeckUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
+    public void initializeLogoIcon() {
+        ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");
+        Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+        logo = new ImageIcon(resizedImg);
+    }
+
     // MODIFIES: adds card to deck
     // EFFECTS: adds a new card to chosen deck
     private void addCard() {
@@ -146,7 +167,7 @@ public class DeckUI extends JFrame implements ActionListener {
     private void editCard() {
         String[] options = currentDeck.getQuestions().toArray(new String[0]);
         var choice = JOptionPane.showOptionDialog(null, "Choose Card to Edit",
-                "Edit Card", 0, 3, null, options, options[0]);
+                "Edit Card", 0, 3, logo, options, options[0]);
 
         String newQuestion = JOptionPane.showInputDialog("Enter New Question: ");
         String newAnswer = JOptionPane.showInputDialog("Enter New Answer: ");
@@ -168,7 +189,7 @@ public class DeckUI extends JFrame implements ActionListener {
     private void deleteCard() {
         String[] options = currentDeck.getQuestions().toArray(new String[0]);
         var choice = JOptionPane.showOptionDialog(null, "Select the Card you want to delete",
-                "Delete Card", 0, 3, null, options, options[0]);
+                "Delete Card", 0, 3, logo, options, options[0]);
 
         for (int i = 0; i < options.length; i++) {
             if (choice == i) {
@@ -183,7 +204,7 @@ public class DeckUI extends JFrame implements ActionListener {
     private void study() {
         String[] options = {"Study Card", "Study Entire Deck"};
         var choice = JOptionPane.showOptionDialog(null, "Select study method",
-                "Study Time", 0, 3, null, options, options[0]);
+                "Study Time", 0, 3, logo, options, options[0]);
         if (choice == 0) {
             studyCard();
         } else if (choice == 2) {
@@ -194,7 +215,7 @@ public class DeckUI extends JFrame implements ActionListener {
     public void studyCard() {
         String[] questions = currentDeck.getQuestions().toArray(answers.toArray(new String[0]));
         var chosen = JOptionPane.showOptionDialog(null, "Select the Card you want to study",
-                "Study Card", 0, 3, null, questions, questions[0]);
+                "Study Card", 0, 3, logo, questions, questions[0]);
         for (int i = 0; i < questions.length; i++) {
             if (chosen == i) {
                 String answer = JOptionPane.showInputDialog(currentDeck.getQuestions().get(i));
