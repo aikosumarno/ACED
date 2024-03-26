@@ -4,7 +4,8 @@ import model.Collection;
 import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.pages.DeckUI;
+//import ui.pages.DeckUI;
+import ui.DeckUI;
 
 import javax.swing.*;
 import java.awt.*;

@@ -12,14 +12,11 @@ import java.util.List;
 
 public class DeckUI extends JFrame implements ActionListener {
     private JLabel deckLabel;
-    private JMenuBar menuBar;
-    private JMenu study;
-    private JMenuItem studyCard;
-    private JMenuItem studyDeck;
-    private JMenu edit;
-    private JMenu add;
-    private JMenu delete;
-    private JMenu returnToCollection;
+    private JButton study;
+    private JButton edit;
+    private JButton add;
+    private JButton delete;
+    private JButton returnToCollection;
     private JButton showAnswerButton;
     private JButton nextButton;
     private List<String> questions;
@@ -37,36 +34,67 @@ public class DeckUI extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
 
-        createMenuBar();
-
         displayCards();
     }
 
-    public void createMenuBar() {
-        menuBar = new JMenuBar();
-        study = new JMenu("Study");
-        studyDeck = new JMenuItem("Review Entire Deck");
-        studyDeck.addActionListener(this);
-        studyCard = new JMenuItem("Review a Card");
-        studyCard.addActionListener(this);
-        add = new JMenu("Add");
-        add.addActionListener(this);
-        edit = new JMenu("Edit");
-        edit.addActionListener(this);
-        delete = new JMenu("Delete");
-        delete.addActionListener(this);
-        returnToCollection = new JMenu("Return to Collection");
+//    public void createMenuBar() {
+//        menuBar = new JMenuBar();
+//        study = new JMenu("Study");
+//        studyDeck = new JMenuItem("Review Entire Deck");
+//        studyDeck.addActionListener(this);
+//        studyCard = new JMenuItem("Review a Card");
+//        studyCard.addActionListener(this);
+//        add = new JMenu("Add");
+//        add.addActionListener(this);
+//        edit = new JMenu("Edit");
+//        edit.addActionListener(this);
+//        delete = new JMenu("Delete");
+//        delete.addActionListener(this);
+//        returnToCollection = new JMenu("Return to Collection");
+//
+//        menuBar.add(study);
+//        study.add(studyDeck);
+//        study.add(studyCard);
+//        menuBar.add(add);
+//        menuBar.add(edit);
+//        menuBar.add(delete);
+//        menuBar.add(returnToCollection);
+//        setJMenuBar(menuBar);
+//    }
+    /**
+    helper method to create buttons
+     */
+    public void createButtons() {
+        study = new JButton("Study");
+        study.addActionListener(this);
+        study.setSize(800, 50);
+        study.setFont(new Font("Dialog", Font.PLAIN, 20));
 
-        menuBar.add(study);
-        study.add(studyDeck);
-        study.add(studyCard);
-        menuBar.add(add);
-        menuBar.add(edit);
-        menuBar.add(delete);
-        menuBar.add(returnToCollection);
-        setJMenuBar(menuBar);
+        add = new JButton("Add Card");
+        add.addActionListener(this);
+        add.setSize(800, 50);
+        add.setFont(new Font("Dialog", Font.PLAIN, 20));
+
+        delete = new JButton("Delete Card");
+        delete.addActionListener(this);
+        delete.setSize(800, 50);
+        delete.setFont(new Font("Dialog", Font.PLAIN, 20));
+
+        edit = new JButton("Delete Card");
+        edit.addActionListener(this);
+        edit.setSize(800, 50);
+        edit.setFont(new Font("Dialog", Font.PLAIN, 20));
+
+        returnToCollection = new JButton("Main Menu");
+        returnToCollection.addActionListener(this);
+        returnToCollection.setSize(800, 50);
+        returnToCollection.setFont(new Font("Dialog", Font.PLAIN, 20));
+
     }
 
+    /**
+     * helper method to display cards in the deck
+     */
     public void displayCards() {
         questions = deck.getQuestions();
         answers = deck.getAnswers();
@@ -75,7 +103,6 @@ public class DeckUI extends JFrame implements ActionListener {
         if (questions.size() > 0) {
             deckLabel = new JLabel(questions.get(currentFlashcardIndex));
             deckLabel.setHorizontalAlignment(JLabel.CENTER);
-
 
             // buttons
             showAnswerButton = new JButton("Show Answer");
@@ -89,9 +116,14 @@ public class DeckUI extends JFrame implements ActionListener {
             contentPane.setLayout(new BorderLayout());
             contentPane.add(deckLabel, BorderLayout.CENTER);
 
-            JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 8, 1));
+            JPanel buttonPanel = new JPanel(new GridLayout(7, 2, 8, 1));
             buttonPanel.add(showAnswerButton);
             buttonPanel.add(nextButton);
+            buttonPanel.add(study);
+            buttonPanel.add(add);
+            buttonPanel.add(edit);
+            buttonPanel.add(delete);
+            buttonPanel.add(returnToCollection);
             contentPane.add(buttonPanel, BorderLayout.SOUTH);
         } else {
             deckLabel = new JLabel("No cards in deck");
@@ -153,11 +185,11 @@ public class DeckUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() instanceof JMenuItem) {
-            JMenuItem item = (JMenuItem) e.getSource();
-            String text = item.getText();
-            System.out.println(text);
-        }
+//        if (e.getSource() instanceof JMenuItem) {
+//            JMenuItem item = (JMenuItem) e.getSource();
+//            String text = item.getText();
+//            System.out.println(text);
+//        }
         if (e.getSource() == showAnswerButton) {
             deckLabel.setText(answers.get(currentFlashcardIndex));
             showAnswerButton.setEnabled(false);
