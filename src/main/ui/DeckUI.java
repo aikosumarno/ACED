@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * ui to represent a deck of flashcards
+ */
 public class DeckUI extends JFrame implements ActionListener {
 
     private Deck currentDeck;
@@ -30,6 +33,9 @@ public class DeckUI extends JFrame implements ActionListener {
 
     private ImageIcon logo;
 
+    /**
+     * initializes the frame
+     */
     public DeckUI(Deck deck) {
         this.currentDeck = deck;
 
@@ -140,6 +146,9 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(cardPanel);
     }
 
+    /**
+     * helper method to initialize a logo icon
+     */
     public void initializeLogoIcon() {
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
@@ -208,6 +217,9 @@ public class DeckUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * helper method to prompt user to choose a card to study and enter their answer
+     */
     public void studyCard() {
         String[] questions = currentDeck.getQuestions().toArray(answers.toArray(new String[0]));
         var chosen = JOptionPane.showOptionDialog(null, "Select the Card you want to study",
@@ -229,7 +241,7 @@ public class DeckUI extends JFrame implements ActionListener {
 
     // REQUIRES: deck.getSize() >= 1
     // MODIFIES: cards in chosen deck
-    // EFFECTS: prints question of every card in deck, checks user's answer
+    // EFFECTS: displays question of every card in deck, checks user's answer
     //           and updates card study counter and status accordingly
     public void studyEntireDeck() {
         int score = 0;
@@ -252,6 +264,9 @@ public class DeckUI extends JFrame implements ActionListener {
                 "You got " + score + " out of " + cards.size() + " questions right.");
     }
 
+    /**
+     * takes in the action done by the user and acts accordingly
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == showAnswerButton) {

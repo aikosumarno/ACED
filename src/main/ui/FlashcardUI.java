@@ -4,7 +4,6 @@ import model.Collection;
 import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-//import ui.pages.DeckUI;
 import ui.DeckUI;
 
 import javax.swing.*;
@@ -15,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+// A Flashcard Application's Graphical User Interface
 public class FlashcardUI extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
@@ -39,6 +39,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
     private List<String> deckNames;
     private JButton[] buttons;
 
+    // EFFECTS: initializes the frame for the main screen
     public FlashcardUI() {
         loadingAppScreen();
         collection = new Collection("Aiko's Flashcard Collection");
@@ -57,7 +58,6 @@ public class FlashcardUI extends JFrame implements ActionListener {
         displayLabel();
         deckCollectionPanel();
         this.setLayout(null);
-//        this.setVisible(true);
     }
 
     /**
@@ -236,6 +236,9 @@ public class FlashcardUI extends JFrame implements ActionListener {
         loadProgressBar();
     }
 
+    /**
+     * helper method to create the loading bar when running the app
+     */
     public void loadProgressBar() {
         timer = new Timer(100, new ActionListener() {
             @Override
@@ -253,6 +256,9 @@ public class FlashcardUI extends JFrame implements ActionListener {
         timer.start();
     }
 
+    /**
+     * helper method to display the logo when the app is loading
+     */
     public void logoPanel() {
         logoPanel = new JPanel();
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedLogo.png");
@@ -266,10 +272,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         logoPanel.setBackground(new Color(205, 239, 255));
     }
 
-//    public static void main(String[] args) {
-//        new FlashcardUI();
-//    }
-
+    // EFFECTS: takes in user's action and acts accordingly
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addDeck) {
