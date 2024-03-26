@@ -56,6 +56,12 @@
                     "answer": "Indonesia",
                     "studyCounter": 1,
                     "status": false
+                },
+                {
+                    "question": "In which continent is Singapore located in?",
+                    "answer": "Asia",
+                    "studyCounter": 0,
+                    "status": false
                 }
             ]
         }

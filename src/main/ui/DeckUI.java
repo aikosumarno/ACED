@@ -134,12 +134,12 @@ public class DeckUI extends JFrame implements ActionListener {
 
         if (questions.size() > 0) {
             card = new JLabel(questions.get(currentFlashcardIndex));
-            card.setFont(new Font("Dialog", Font.PLAIN, 50));
+            card.setFont(new Font("Dialog", Font.PLAIN, 20));
             card.setHorizontalAlignment(JLabel.CENTER);
             cardPanel.add(card, BorderLayout.CENTER);
         } else {
             card = new JLabel("No cards in deck");
-            card.setFont(new Font("Dialog", Font.PLAIN, 50));
+            card.setFont(new Font("Dialog", Font.PLAIN, 20));
             card.setHorizontalAlignment(JLabel.CENTER);
             cardPanel.add(card, BorderLayout.CENTER);
         }
@@ -185,6 +185,7 @@ public class DeckUI extends JFrame implements ActionListener {
                 currentDeck.viewDeck().get(i).resetStudyCounter();
             }
         }
+        cardDisplayPanel();
     }
 
 
@@ -201,6 +202,7 @@ public class DeckUI extends JFrame implements ActionListener {
                 currentDeck.deleteCard(currentDeck.viewDeck().get(i));
             }
         }
+        cardDisplayPanel();
     }
 
     /**

@@ -284,7 +284,6 @@ public class FlashcardUI extends JFrame implements ActionListener {
             saveCollection();
         } else if (collection.getDeckNames().contains(e.getActionCommand())) {
             DeckUI chosenDeck = null;
-            System.out.println("testing buttons");
             String action = e.getActionCommand();
             List<String> deckNames = collection.getDeckNames();
             for (int i = 0; i < deckNames.size(); i++) {
