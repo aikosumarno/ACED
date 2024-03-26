@@ -7,7 +7,7 @@
                 {
                     "question": "Define sad",
                     "answer": "unhappy",
-                    "studyCounter": 3,
+                    "studyCounter": 4,
                     "status": true
                 },
                 {
@@ -19,7 +19,7 @@
                 {
                     "question": "Define angry",
                     "answer": "frustrated",
-                    "studyCounter": 0,
+                    "studyCounter": 1,
                     "status": false
                 }
             ]

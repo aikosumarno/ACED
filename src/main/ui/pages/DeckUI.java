@@ -119,11 +119,11 @@ public class DeckUI extends JFrame implements ActionListener {
             JPanel buttonPanel = new JPanel(new GridLayout(7, 2, 8, 1));
             buttonPanel.add(showAnswerButton);
             buttonPanel.add(nextButton);
-            buttonPanel.add(study);
-            buttonPanel.add(add);
-            buttonPanel.add(edit);
-            buttonPanel.add(delete);
-            buttonPanel.add(returnToCollection);
+//            buttonPanel.add(study);
+//            buttonPanel.add(add);
+//            buttonPanel.add(edit);
+//            buttonPanel.add(delete);
+//            buttonPanel.add(returnToCollection);
             contentPane.add(buttonPanel, BorderLayout.SOUTH);
         } else {
             deckLabel = new JLabel("No cards in deck");
@@ -182,6 +182,7 @@ public class DeckUI extends JFrame implements ActionListener {
 //        deck.deleteCard(deck.viewDeck().get(num));
 //        viewDeck(deck);
 //    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

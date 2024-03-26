@@ -133,4 +133,5 @@ public class DeckTest {
         assertEquals(0, subjects.getSize());
         assertEquals(-1, subjects.findCardNumber(science));
     }
+
 }

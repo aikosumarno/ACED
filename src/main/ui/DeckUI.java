@@ -121,7 +121,7 @@ public class DeckUI extends JFrame implements ActionListener {
         cardPanel = new JPanel();
         cardPanel.setBackground(new Color(205, 239, 255));
         cardPanel.setBounds(200,0, 600,450);
-        cardPanel.setLayout(null);
+        cardPanel.setLayout(new BorderLayout());
         questions = currentDeck.getQuestions();
         answers = currentDeck.getAnswers();
         currentFlashcardIndex = 0;
@@ -138,10 +138,6 @@ public class DeckUI extends JFrame implements ActionListener {
             cardPanel.add(card, BorderLayout.CENTER);
         }
         this.add(cardPanel);
-        cardPanel.revalidate();
-        cardPanel.repaint(); // updates the panel
-        this.validate();
-        this.repaint();
     }
 
     public void initializeLogoIcon() {
@@ -207,7 +203,7 @@ public class DeckUI extends JFrame implements ActionListener {
                 "Study Time", 0, 3, logo, options, options[0]);
         if (choice == 0) {
             studyCard();
-        } else if (choice == 2) {
+        } else if (choice == 1) {
             studyEntireDeck();
         }
     }
