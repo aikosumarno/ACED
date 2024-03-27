@@ -31,9 +31,8 @@ and make learning more fun.
 ### Instructions for Grader:
 - You can generate the first required action related to the user story 
 "adding multiple cards to a deck" by 
-  1.  Click on the "add new deck" button to create a new deck or
-      if you want to add a new card to an existing deck by first 
-      clicking on the "load existing collection" button.
+  1.  Click on the "load existing collection" button to see the available 
+      decks you want to add a card to.
   2. Then, you will see that new buttons beneath new decks are created. 
      These buttons will redirect you to a new frame according to the 
      deck name you have chosen. 
@@ -41,13 +40,13 @@ and make learning more fun.
      the "add card" button. 
   4. Next, you will be prompted to add the new question and new answer. 
   5. Now, if you continue to click on the "next card" button, you should 
-     be able to see your new card.
+     be able to see your new card added to the end of the deck.
 - You can generate the second required action related to the user story 
   "viewing the cards in a deck" by:
   1. Click on "load existing collection"
-  2. Click on any of the "deck name buttons" below the text your deck 
-  3. You should be redirected to a new frame corresponding to your chosen deck
-  4. Click on next and show answer to view all of the cards in your deck
+  2. Click on any of the "deck name buttons" below the text your deck.
+  3. You should be redirected to a new frame corresponding to your chosen deck.
+  4. Click on next and show answer to view all the cards in your deck.
 - You can locate my visual component by running the application
   - upon running the application, you will see a splash screen with a loading bar 
     indicating that the app is loading. 
