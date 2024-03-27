@@ -52,9 +52,7 @@ public class DeckUI extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    /**
-     * helper to create panel for buttons
-     */
+    // EFFECTS: creates a panel for the buttons
     public void buttonPanel() {
         deckButtonPanel = new JPanel();
         deckButtonPanel.setBackground(new Color(000435));
@@ -74,9 +72,7 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(deckButtonPanel);
     }
 
-    /**
-     * helper to create buttons
-     */
+    // EFFECTS: creates the buttons
     public void deckButtons() {
         study = new JButton("Study");
         study.addActionListener(this);
@@ -104,9 +100,7 @@ public class DeckUI extends JFrame implements ActionListener {
         returnToCollection.setFont(new Font("Dialog", Font.PLAIN, 20));
     }
 
-    /**
-     * helper to create panel and buttons for show answer and next
-     */
+    // EFFECTS: creates a panel and the buttons for show answer and next
     public void actionPanel() {
         actionButtonPanel = new JPanel();
         actionButtonPanel.setBackground(new Color(0,0,128));
@@ -125,9 +119,7 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(actionButtonPanel);
     }
 
-    /**
-     * helper to create panel for displaying the cards
-     */
+    // EFFECTS: creates a panel for displaying the cards in your deck
     public void cardDisplayPanel() {
         cardPanel = new JPanel();
         cardPanel.setBackground(new Color(205, 239, 255));
@@ -151,9 +143,7 @@ public class DeckUI extends JFrame implements ActionListener {
         this.add(cardPanel);
     }
 
-    /**
-     * helper method to initialize a logo icon
-     */
+    // EFFECTS: initializes the logo icon to be used throughout the ui
     public void initializeLogoIcon() {
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);

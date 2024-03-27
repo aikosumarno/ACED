@@ -59,9 +59,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.setLayout(null);
     }
 
-    /**
-    helper method to create Collection Menu Heading
-     */
+    // EFFECTS: creates Collection Menu Heading
     public void collectionHeading() {
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");
         Image resizedImg = img.getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
@@ -79,9 +77,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.add(collectionlbl);
     }
 
-    /**
-     * helper method to create collection buttons panel
-     */
+    // EFFECTS: creates collection buttons panel
     public void collectionButtonsPanel() {
         collectionButtonPanel = new JPanel();
         collectionButtonPanel.setBackground(new Color(000435));
@@ -91,9 +87,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.add(collectionButtonPanel);
     }
 
-    /**
-     * helper method to create buttons for collection menu
-     */
+    // EFFECTS: create buttons for collection menu
     public void collectionButtons() {
         addDeck = new JButton("Add New Deck");
         addDeck.setBounds(0, 5, 800, 50);
@@ -121,9 +115,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         collectionButtonPanel.add(saveCollection);
     }
 
-    /**
-     * helper method to create label and panel for displaying decks
-     */
+    // EFFECTS: create labels and panel for displaying the decks in your collection
     public void displayLabel() {
         JLabel deckCollectionlbl = new JLabel();
         deckCollectionlbl.setText("  Your Decks:");
@@ -139,9 +131,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.add(labelDisplayPanel);
     }
 
-    /**
-    helper method to create panel to display decks
-     */
+    // EFFECTS: creates a panel to display the buttons that redirect you to the corresponding decks
     public void deckCollectionPanel() {
         decksDisplayPanel = new JPanel();
         decksDisplayPanel.setBackground(new Color(205, 239, 255));
@@ -150,9 +140,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.add(decksDisplayPanel);
     }
 
-    /**
-     * helper method to display decks in collection
-     */
+    // EFFECTS: displays the decks in your collection as buttons that will redirect you to the corresponding decks
     public void displayDecks() {
         deckNames = collection.getDeckNames();
         buttons = new JButton[deckNames.size()];
@@ -216,9 +204,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
-    /**
-     * helper splash screen to load app
-     */
+    // EFFECT: creates splash screen to show that the app is loading.
     public void loadingAppScreen() {
         loadingWindow = new JWindow(this);
         loadingWindow.setSize(800, 600);
@@ -235,9 +221,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         loadProgressBar();
     }
 
-    /**
-     * helper method to create the loading bar when running the app
-     */
+    // EFFECTS: creates the loading bar on the splash screen when loading the app
     public void loadProgressBar() {
         timer = new Timer(100, new ActionListener() {
             @Override
@@ -255,9 +239,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         timer.start();
     }
 
-    /**
-     * helper method to display the logo when the app is loading
-     */
+    // EFFECTS: displays the logo on the splash screen when the app is loading
     public void logoPanel() {
         logoPanel = new JPanel();
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedLogo.png");
