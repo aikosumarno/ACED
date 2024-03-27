@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
- * ui to represent a deck of flashcards
+ * ui to display a deck of flashcards
  */
 public class DeckUI extends JFrame implements ActionListener {
 
@@ -19,6 +19,7 @@ public class DeckUI extends JFrame implements ActionListener {
     private JPanel actionButtonPanel;
     private JPanel cardPanel;
     private JLabel card;
+    private JLabel deckName;
 
     private JButton study;
     private JButton edit;
@@ -33,9 +34,8 @@ public class DeckUI extends JFrame implements ActionListener {
 
     private ImageIcon logo;
 
-    /**
-     * initializes the frame
-     */
+
+    // EFFECTS: initializes the frame for all components to be displayed on
     public DeckUI(Deck deck) {
         this.currentDeck = deck;
 
@@ -60,6 +60,11 @@ public class DeckUI extends JFrame implements ActionListener {
         deckButtonPanel.setBackground(new Color(000435));
         deckButtonPanel.setBounds(0,0, 200,600);
         deckButtonPanel.setLayout(null);
+        deckName = new JLabel(currentDeck.getName());
+        deckName.setFont(new Font("Dialog", Font.PLAIN, 20));
+        deckName.setForeground(Color.WHITE);
+        deckName.setBounds(15, 5, 180, 50);
+        deckButtonPanel.add(deckName);
         deckButtons();
         deckButtonPanel.add(study);
         deckButtonPanel.add(add);
@@ -75,27 +80,27 @@ public class DeckUI extends JFrame implements ActionListener {
     public void deckButtons() {
         study = new JButton("Study");
         study.addActionListener(this);
-        study.setBounds(0, 5, 180, 50);
+        study.setBounds(0, 70, 180, 50);
         study.setFont(new Font("Dialog", Font.PLAIN, 20));
 
         add = new JButton("Add Card");
         add.addActionListener(this);
-        add.setBounds(0, 60, 180, 50);
+        add.setBounds(0, 125, 180, 50);
         add.setFont(new Font("Dialog", Font.PLAIN, 20));
 
         delete = new JButton("Delete Card");
         delete.addActionListener(this);
-        delete.setBounds(0, 115, 180, 50);
+        delete.setBounds(0, 180, 180, 50);
         delete.setFont(new Font("Dialog", Font.PLAIN, 20));
 
         edit = new JButton("Edit Card");
         edit.addActionListener(this);
-        edit.setBounds(0, 170, 180, 50);
+        edit.setBounds(0, 235, 180, 50);
         edit.setFont(new Font("Dialog", Font.PLAIN, 20));
 
         returnToCollection = new JButton("Main Menu");
         returnToCollection.addActionListener(this);
-        returnToCollection.setBounds(0, 225, 180, 50);
+        returnToCollection.setBounds(0, 290, 180, 50);
         returnToCollection.setFont(new Font("Dialog", Font.PLAIN, 20));
     }
 
@@ -205,9 +210,7 @@ public class DeckUI extends JFrame implements ActionListener {
         cardDisplayPanel();
     }
 
-    /**
-     * helper method to study deck
-     */
+    // EFFECTS: displays study options and prompts user to select a study method, redirecting them to their choice
     private void study() {
         String[] options = {"Study Card", "Study Entire Deck"};
         var choice = JOptionPane.showOptionDialog(null, "Select study method",
@@ -219,9 +222,9 @@ public class DeckUI extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * helper method to prompt user to choose a card to study and enter their answer
-     */
+    // REQUIRES: deck.getSize() >= 1
+    // MODIFIES: card in chosen deck
+    // EFFECTS: print question of chosen card and updates card study counter and status if answer is entered correctly
     public void studyCard() {
         String[] questions = currentDeck.getQuestions().toArray(answers.toArray(new String[0]));
         var chosen = JOptionPane.showOptionDialog(null, "Select the Card you want to study",
@@ -230,9 +233,13 @@ public class DeckUI extends JFrame implements ActionListener {
             if (chosen == i) {
                 String answer = JOptionPane.showInputDialog(currentDeck.getQuestions().get(i));
                 if (answer.equals(currentDeck.viewDeck().get(i).getAnswer())) {
-                    JOptionPane.showMessageDialog(null, "That's correct!");
                     currentDeck.viewDeck().get(i).updateStudyCounter();
                     currentDeck.viewDeck().get(i).updateStatus();
+                    if (currentDeck.viewDeck().get(i).getStatus()) {
+                        JOptionPane.showMessageDialog(null, "That's correct! \n You have mastered this card!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "That's correct!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrect!"
                             + "\n The correct answer is " + currentDeck.viewDeck().get(i).getAnswer());
@@ -266,9 +273,8 @@ public class DeckUI extends JFrame implements ActionListener {
                 "You got " + score + " out of " + cards.size() + " questions right.");
     }
 
-    /**
-     * takes in the action done by the user and acts accordingly
-     */
+
+    // EFFECTS: takes in user action and acts accordingly
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == showAnswerButton) {

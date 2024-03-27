@@ -4,7 +4,6 @@ import model.Collection;
 import model.Deck;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.DeckUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +60,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
     }
 
     /**
-    helper method for Collection Menu Heading
+    helper method to create Collection Menu Heading
      */
     public void collectionHeading() {
         ImageIcon img = new ImageIcon("src/main/ui/images/AcedSmallLogo.png");

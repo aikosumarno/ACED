@@ -59,7 +59,6 @@ public class Deck implements Writable {
         return answers;
     }
 
-
     // REQUIRES: currentDeck.size() != 0
     // EFFECTS: returns the card's position in the list,
     //          -1 if not found

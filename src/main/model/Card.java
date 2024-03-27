@@ -1,6 +1,6 @@
 package model;
 
-/*
+/**
 Represents a card having a question, an answer,
 a status to indicate how well the user has studied,
 and a counter to track how many times the user has studied the card.

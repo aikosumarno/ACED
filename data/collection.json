@@ -21,26 +21,48 @@
                     "answer": "frustrated",
                     "studyCounter": 1,
                     "status": false
+                },
+                {
+                    "question": "Define joy",
+                    "answer": "smiling",
+                    "studyCounter": 3,
+                    "status": true
                 }
             ]
         },
         {
             "name": "jobs",
-            "currentDeck": [{
-                "question": "What is the job of a student?",
-                "answer": "study",
-                "studyCounter": 2,
-                "status": false
-            }]
+            "currentDeck": [
+                {
+                    "question": "What is the job of a student?",
+                    "answer": "study",
+                    "studyCounter": 2,
+                    "status": false
+                },
+                {
+                    "question": "What is the job of a professor?",
+                    "answer": "teach",
+                    "studyCounter": 0,
+                    "status": false
+                }
+            ]
         },
         {
             "name": "random",
-            "currentDeck": [{
-                "question": "How many letters are in the word test?",
-                "answer": "four",
-                "studyCounter": 0,
-                "status": false
-            }]
+            "currentDeck": [
+                {
+                    "question": "How many letters are in the word \"three\"?",
+                    "answer": "five",
+                    "studyCounter": 0,
+                    "status": false
+                },
+                {
+                    "question": "How many campus does UBC have?",
+                    "answer": "two",
+                    "studyCounter": 0,
+                    "status": false
+                }
+            ]
         },
         {
             "name": "countries",
