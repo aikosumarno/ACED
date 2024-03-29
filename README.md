@@ -50,6 +50,23 @@ and make learning more fun.
 - You can locate my visual component by running the application
   - upon running the application, you will see a splash screen with a loading bar 
     indicating that the app is loading. 
+- You can delete cards from the deck by: 
+  1. Click on "load existing collection".
+  2. Click on the deck from which you want to delete cards from. 
+  3. You should be redirected to a new frame according to your deck.
+  4. Click on the "delete card" button. 
+  5. A frame should pop up where you can just click on the question you 
+     want to delete. 
+  6. You should now see that when you keep on clicking "next" that the 
+     question you have deleted is no longer visible. 
+- You can edit the details of an exsiting card by: 
+  1. Click on "load existing collection". 
+  2. Click on the deck where the card you want to edit is in. 
+  3. Click on edit card. 
+  4. Click on the card details you want to edit. 
+  5. You will be prompted to enter the new question and answer. 
+  6. Now when you look at you cards in the deck by clicking on "show answer" 
+     and "next", you will see the updated cards. 
 - You can save the state of my application by clicking on the "save collection" 
   button on the main menu. 
 - You can reload the state of my application by clicking on the "load existing collection" 
