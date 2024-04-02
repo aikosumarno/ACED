@@ -59,7 +59,7 @@ public class Card implements Writable {
     // EFFECTS: changes question to the new question
     public String editQuestion(String newQuestion) {
         this.question = newQuestion;
-        EventLog.getInstance().logEvent(new Event("Edited question to: " + newQuestion));
+        EventLog.getInstance().logEvent(new Event("Edited question to: '" + newQuestion +"'"));
         return question;
     }
 
@@ -67,7 +67,7 @@ public class Card implements Writable {
     // EFFECTS: changes answer to the new answer
     public String editAnswer(String newAnswer) {
         this.answer = newAnswer;
-        EventLog.getInstance().logEvent(new Event("Edited answer to: " + newAnswer));
+        EventLog.getInstance().logEvent(new Event("Edited answer to: '" + newAnswer + "'"));
         return answer;
     }
 
@@ -78,7 +78,6 @@ public class Card implements Writable {
     public boolean updateStatus() {
         if (studyCounter >= 3) {
             this.status = true;
-            EventLog.getInstance().logEvent(new Event("Updated card status to true (mastered)"));
         } else {
             this.status = false;
         }
@@ -96,7 +95,6 @@ public class Card implements Writable {
     // EFFECTS: resets status to false
     public boolean resetStatus() {
         this.status = false;
-        EventLog.getInstance().logEvent(new Event("Reset card status to false (not mastered)"));
         return status;
     }
 
@@ -104,7 +102,6 @@ public class Card implements Writable {
     // EFFECTS: resets studyCounter to 0
     public int resetStudyCounter() {
         this.studyCounter = 0;
-        EventLog.getInstance().logEvent(new Event("Reset study counter 0"));
         return studyCounter;
     }
 

@@ -2,6 +2,8 @@ package ui;
 
 import model.Collection;
 import model.Deck;
+import model.EventLog;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -9,12 +11,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 // A Flashcard Application's Graphical User Interface
-public class FlashcardUI extends JFrame implements ActionListener {
+public class FlashcardUI extends JFrame implements ActionListener, WindowListener {
     private static final String JSON_STORE = "./data/collection.json";
     private Collection collection;
     private JsonReader jsonReader;
@@ -48,7 +52,7 @@ public class FlashcardUI extends JFrame implements ActionListener {
         this.setTitle("ACED");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(800,600);
+        this.setSize(WIDTH,HEIGHT);
 
         this.getContentPane().setBackground(new Color(205, 239, 255));
 
@@ -57,6 +61,8 @@ public class FlashcardUI extends JFrame implements ActionListener {
         displayLabel();
         deckCollectionPanel();
         this.setLayout(null);
+
+        addWindowListener(this);
     }
 
     // EFFECTS: creates Collection Menu Heading
@@ -274,5 +280,43 @@ public class FlashcardUI extends JFrame implements ActionListener {
             }
             chosenDeck.setVisible(true);
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        EventLog el = EventLog.getInstance();
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n");
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
