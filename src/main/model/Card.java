@@ -59,7 +59,7 @@ public class Card implements Writable {
     // EFFECTS: changes question to the new question
     public String editQuestion(String newQuestion) {
         this.question = newQuestion;
-        EventLog.getInstance().logEvent(new Event("Edited question to: '" + newQuestion +"'"));
+        EventLog.getInstance().logEvent(new Event("Edited question to: '" + newQuestion + "'"));
         return question;
     }
 
