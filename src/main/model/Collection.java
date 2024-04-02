@@ -47,6 +47,7 @@ public class Collection implements Writable {
     // EFFECTS: adds new deck to the end of the collection
     public Deck addNewDeck(Deck name) {
         myCollection.add(name);
+        EventLog.getInstance().logEvent(new Event("Added deck " + name.getName() + " to collection."));
         return name;
     }
 

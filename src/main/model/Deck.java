@@ -23,6 +23,8 @@ public class Deck implements Writable {
     // EFFECTS: adds given card to the end of the deck
     public Card addCard(Card card) {
         currentDeck.add(card);
+        EventLog.getInstance().logEvent(
+                new Event("Added " + card.getQuestion() + " card to " + name + " deck."));
         return card;
     }
 
@@ -85,6 +87,8 @@ public class Deck implements Writable {
     // MODIFIES: this
     // EFFECTS: deletes and returns the card with the given question
     public Card deleteCard(Card card) {
+        EventLog.getInstance().logEvent(
+                new Event("Deleted " + card.getQuestion() + " card from " + name + "deck."));
         return currentDeck.remove(findCardNumber(card) - 1);
     }
 
