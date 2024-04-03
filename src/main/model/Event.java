@@ -38,6 +38,7 @@ public class Event {
         return description;
     }
 
+    // EFFECTS: checks if the current date logged and description is equal to the object passed through the parameter
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -52,11 +53,13 @@ public class Event {
                 && this.description.equals(otherEvent.description));
     }
 
+    // EFFECTS: returns the hashcode of the event
     @Override
     public int hashCode() {
         return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
     }
 
+    // EFFECTS: converts event details to string
     @Override
     public String toString() {
         return dateLogged.toString() + "\n" + description;

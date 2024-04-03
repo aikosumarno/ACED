@@ -6,10 +6,13 @@ package model.exception;
  */
 
 public class LogException extends Exception {
+
+    // EFFECTS: initializes exception
     public LogException() {
         super("Error printing log");
     }
 
+    // EFFECTS: initializes exception with given message
     public LogException(String msg) {
         super(msg);
     }
