@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Card;
-import model.Collection;
-import model.Deck;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -56,6 +54,8 @@ public class JsonReader {
             JSONObject nextDeck = (JSONObject) json;
             addDeck(c, nextDeck);
         }
+        EventLog.getInstance().logEvent(
+                new Event("Loaded " + c.getName() + " collection from file."));
     }
 
     // MODIFIES: c

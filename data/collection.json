@@ -11,12 +11,6 @@
                     "status": true
                 },
                 {
-                    "question": "Define happy",
-                    "answer": "joyful",
-                    "studyCounter": 0,
-                    "status": false
-                },
-                {
                     "question": "Define angry",
                     "answer": "frustrated",
                     "studyCounter": 1,
@@ -27,12 +21,6 @@
                     "answer": "smiling",
                     "studyCounter": 3,
                     "status": true
-                },
-                {
-                    "question": "Define annoyed",
-                    "answer": "irritated",
-                    "studyCounter": 0,
-                    "status": false
                 }
             ]
         },
@@ -55,33 +43,19 @@
         },
         {
             "name": "random",
-            "currentDeck": [
-                {
-                    "question": "How many letters are in the word \"three\"?",
-                    "answer": "five",
-                    "studyCounter": 0,
-                    "status": false
-                },
-                {
-                    "question": "Where is the main UBC campus located?",
-                    "answer": "Vancouver",
-                    "studyCounter": 0,
-                    "status": false
-                },
-                {
-                    "question": "What is the name of the business school in UBC?",
-                    "answer": "sauder",
-                    "studyCounter": 0,
-                    "status": false
-                }
-            ]
+            "currentDeck": [{
+                "question": "What is the name of the business school in UBC?",
+                "answer": "sauder",
+                "studyCounter": 0,
+                "status": false
+            }]
         },
         {
             "name": "countries",
             "currentDeck": [
                 {
-                    "question": "In which country is Vancouver located?",
-                    "answer": "Canada",
+                    "question": "In which province is Vancouver located?",
+                    "answer": "British Columbia",
                     "studyCounter": 0,
                     "status": false
                 },
@@ -92,25 +66,8 @@
                     "status": false
                 },
                 {
-                    "question": "In which continent is Singapore located in?",
+                    "question": "In which continent is Singapore located?",
                     "answer": "Asia",
-                    "studyCounter": 0,
-                    "status": false
-                }
-            ]
-        },
-        {
-            "name": "objects",
-            "currentDeck": [
-                {
-                    "question": "What is a pen used for?",
-                    "answer": "write",
-                    "studyCounter": 0,
-                    "status": false
-                },
-                {
-                    "question": "What is an eraser used for?",
-                    "answer": "erase",
                     "studyCounter": 0,
                     "status": false
                 }

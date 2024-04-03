@@ -42,6 +42,8 @@ public class FlashcardUI extends JFrame implements ActionListener, WindowListene
     private List<String> deckNames;
     private JButton[] buttons;
 
+    private EventLog el;
+
     // EFFECTS: initializes the frame for the main screen
     public FlashcardUI() {
         loadingAppScreen();
@@ -289,7 +291,7 @@ public class FlashcardUI extends JFrame implements ActionListener, WindowListene
 
     @Override
     public void windowClosing(WindowEvent e) {
-        EventLog el = EventLog.getInstance();
+        el = EventLog.getInstance();
         for (Event next : el) {
             System.out.println(next.toString() + "\n");
         }

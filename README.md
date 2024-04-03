@@ -72,6 +72,78 @@ and make learning more fun.
 - You can reload the state of my application by clicking on the "load existing collection" 
   button on the main menu.
 
+### Phase 4: Task 2
+Wed Apr 03 13:11:41 PDT 2024
+Added deck 'emotions' to collection.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'Define sad' card to emotions deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'Define angry' card to emotions deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'Define joy' card to emotions deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added deck 'jobs' to collection.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'What is the job of a student?' card to jobs deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'What is the job of a professor?' card to jobs deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added deck 'random' to collection.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'Where is the main UBC campus located?' card to random deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'What is the name of the business school in UBC?' card to random deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added deck 'countries' to collection.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'In which country is Vancouver located?' card to countries deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Added 'In which country is Bali located?' card to countries deck.
+
+Wed Apr 03 13:11:41 PDT 2024
+Loaded Aiko's Flashcard Collection collection from file.
+
+Wed Apr 03 13:12:13 PDT 2024
+Added 'In which continent is Singapore located?' card to countries deck.
+
+Wed Apr 03 13:13:13 PDT 2024
+Edited question to: 'In which province is Vancouver located?'
+
+Wed Apr 03 13:13:13 PDT 2024
+Edited answer to: 'British Columbia'
+
+Wed Apr 03 13:13:36 PDT 2024
+Deleted 'Where is the main UBC campus located?' card from randomdeck.
+
+Wed Apr 03 13:13:44 PDT 2024
+Saved Aiko's Flashcard Collection collection to file.
+
+### Phase 4: Task 3
+If I had more time to work on this project, I would ensure that each class follows 
+the single responsibility principle. Currently, even though the UI is divided up 
+into their respective frames, there are other things that they are also doing. 
+For instance, the save and load functions are found in the FlashcardUI as well. If 
+I had more time, I would extract them into their own class. Moreover, I would 
+implement exception handling to improve the usability and efficiency of my program as 
+there is nothing that currently restricts the users ability to make new decks and cards. 
+If I had more time, I would remove the requires clauses and implement exceptions that 
+would ensure that the user is unable to create a new deck with a name that already exists. 
+This would also help when I only had the console based application by not just having 
+the user keep on inputting their choice until they enter a valid option by prompting 
+them with a meaningful error message instead. 
+
 ### Reference List:
 - CPSC210. (2024, February 15). CPSC210/JsonSerializationDemo:
     Simple application to illustrate JSON serialization. 
