@@ -289,6 +289,7 @@ public class FlashcardUI extends JFrame implements ActionListener, WindowListene
 
     }
 
+    // EFFECTS: prints the events log on the console when the user closes the frame
     @Override
     public void windowClosing(WindowEvent e) {
         el = EventLog.getInstance();

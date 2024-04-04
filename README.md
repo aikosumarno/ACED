@@ -134,7 +134,7 @@ Saved Aiko's Flashcard Collection collection to file.
 If I had more time to work on this project, I would ensure that each class follows 
 the single responsibility principle. Currently, even though the UI is divided up 
 into their respective frames, there are other things that they are also doing. 
-For instance, the save and load functions are found in the FlashcardUI as well. If 
+For instance, the splash screen is found in the FlashcardUI as well. If 
 I had more time, I would extract them into their own class. Moreover, I would 
 implement exception handling to improve the usability and efficiency of my program as 
 there is nothing that currently restricts the users ability to make new decks and cards. 
