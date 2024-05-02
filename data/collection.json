@@ -34,8 +34,8 @@
                     "status": false
                 },
                 {
-                    "question": "What is the job of a professor?",
-                    "answer": "teach",
+                    "question": "What is the job of a chef? ",
+                    "answer": "cook",
                     "studyCounter": 0,
                     "status": false
                 }
@@ -70,6 +70,23 @@
                     "answer": "Asia",
                     "studyCounter": 0,
                     "status": false
+                }
+            ]
+        },
+        {
+            "name": "CPSC 210",
+            "currentDeck": [
+                {
+                    "question": "What is polymorphism?",
+                    "answer": "having multiple forms",
+                    "studyCounter": 0,
+                    "status": false
+                },
+                {
+                    "question": "What is cohesion? ",
+                    "answer": "The Single Responsibility Principle",
+                    "studyCounter": 3,
+                    "status": true
                 }
             ]
         }

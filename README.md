@@ -28,9 +28,8 @@ and make learning more fun.
 - As a user, I want to be able to save my flashcards so that I can review it in the future. 
 - As a user, I want to be able to load my previous flashcards from file. 
  
-### Instructions for Grader:
-- You can generate the first required action related to the user story 
-"adding multiple cards to a deck" by 
+### User Instructions:
+- How to add cards to a deck:
   1.  Click on the "load existing collection" button to see the available 
       decks you want to add a card to.
   2. Then, you will see that new buttons beneath new decks are created. 
@@ -41,16 +40,15 @@ and make learning more fun.
   4. Next, you will be prompted to add the new question and new answer. 
   5. Now, if you continue to click on the "next card" button, you should 
      be able to see your new card added to the end of the deck.
-- You can generate the second required action related to the user story 
-  "viewing the cards in a deck" by:
+- How to view the cards in a deck:
   1. Click on "load existing collection"
   2. Click on any of the "deck name buttons" below the text your deck.
   3. You should be redirected to a new frame corresponding to your chosen deck.
   4. Click on next and show answer to view all the cards in your deck.
-- You can locate my visual component by running the application
+- Visual Component
   - upon running the application, you will see a splash screen with a loading bar 
     indicating that the app is loading. 
-- You can delete cards from the deck by: 
+- How to delete cards from a deck:
   1. Click on "load existing collection".
   2. Click on the deck from which you want to delete cards from. 
   3. You should be redirected to a new frame according to your deck.
@@ -59,7 +57,7 @@ and make learning more fun.
      want to delete. 
   6. You should now see that when you keep on clicking "next" that the 
      question you have deleted is no longer visible. 
-- You can edit the details of an exsiting card by: 
+- How to edit card details:
   1. Click on "load existing collection". 
   2. Click on the deck where the card you want to edit is in. 
   3. Click on edit card. 
@@ -72,7 +70,7 @@ and make learning more fun.
 - You can reload the state of my application by clicking on the "load existing collection" 
   button on the main menu.
 
-### Phase 4: Task 2
+### Sample Event Log
 Wed Apr 03 13:11:41 PDT 2024
 Added deck 'emotions' to collection.
 
@@ -130,7 +128,7 @@ Deleted 'Where is the main UBC campus located?' card from randomdeck.
 Wed Apr 03 13:13:44 PDT 2024
 Saved Aiko's Flashcard Collection collection to file.
 
-### Phase 4: Task 3
+### Improvements to be made:
 If I had more time to work on this project, I would ensure that each class follows 
 the single responsibility principle. Currently, even though the UI is divided up 
 into their respective frames, there are other things that they are also doing. 
@@ -145,11 +143,6 @@ the user keep on inputting their choice until they enter a valid option by promp
 them with a meaningful error message instead. 
 
 ### Reference List:
-- CPSC210. (2024, February 15). CPSC210/JsonSerializationDemo:
-    Simple application to illustrate JSON serialization. 
-    GitHub Enterprise. https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 - Using Swing Components: Examples (The JavaTM Tutorials > 
   Creating a GUI with Swing > Using Swing Components). (2022). 
   Oracle.com. https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
-- CPSC210. (2023, September 5). CPSC210/AlarmSystem. 
-  GitHub Enterprise. https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
